@@ -5,6 +5,8 @@ type CTAButtonProps = {
   href?: string;
   variant?: 'primary' | 'ghost';
   className?: string;
+  target?: string;
+  rel?: string;
 };
 
 export default function CTAButton({
@@ -12,12 +14,16 @@ export default function CTAButton({
   href = '#contacto',
   variant = 'primary',
   className = '',
+  target,
+  rel,
 }: CTAButtonProps) {
   if (variant === 'ghost') {
     return (
       <a
         href={href}
-        className={`inline-flex items-center justify-center rounded-full border border-white/30 text-white font-medium uppercase tracking-widest px-7 py-3 sm:px-9 sm:py-3.5 text-xs sm:text-sm hover:bg-white/10 transition-colors ${className}`}
+        target={target}
+        rel={rel}
+        className={`group inline-flex items-center justify-center rounded-full border border-white/20 text-white/90 font-medium uppercase tracking-[0.18em] px-7 py-3 sm:px-8 sm:py-3.5 text-[11px] sm:text-xs hover:border-[#FFFF33] hover:text-[#FFFF33] transition-all duration-300 ${className}`}
       >
         {children}
       </a>
@@ -26,11 +32,12 @@ export default function CTAButton({
   return (
     <a
       href={href}
-      className={`inline-flex items-center justify-center rounded-full font-semibold uppercase tracking-widest px-7 py-3 sm:px-9 sm:py-3.5 text-xs sm:text-sm transition-transform hover:scale-[1.02] ${className}`}
+      target={target}
+      rel={rel}
+      className={`group relative inline-flex items-center justify-center rounded-full font-semibold uppercase tracking-[0.18em] px-7 py-3 sm:px-8 sm:py-3.5 text-[11px] sm:text-xs transition-all duration-300 bg-[#DDE227] hover:bg-[#FFFF33] hover:scale-[1.03] text-[#0A0A0B] cta-primary ${className}`}
       style={{
-        background: '#FFD400',
-        color: '#0A0A0A',
-        boxShadow: '0 8px 28px rgba(255, 212, 0, 0.35)',
+        boxShadow:
+          '0 1px 0 0 rgba(255,255,255,0.15) inset, 0 12px 32px -8px rgba(221,226,39,0.45)',
       }}
     >
       {children}

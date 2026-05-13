@@ -13,21 +13,97 @@
 html,
 body,
 #root {
-  background-color: #050505;
-  font-family: 'Montserrat', sans-serif;
-  color: #eeeeee;
+  background-color: #0a0a0b;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #f2f2f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
+/* Display headings: SF Pro Display on Apple, Inter elsewhere */
+.font-display {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter',
+    'Segoe UI', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-mono {
+  font-family: ui-monospace, 'SF Mono', 'Menlo', 'Monaco', 'Consolas',
+    'Liberation Mono', monospace;
+}
+
+/* Headline gradient: warm off-white → cool grey */
 .brand-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #b3b3b3 100%);
+  background: linear-gradient(180deg, #f2f2f0 0%, #8a8a88 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
+/* Accent solid (premium amber-gold) */
 .accent-gradient {
-  color: #ffd400;
-  -webkit-text-fill-color: #ffd400;
+  color: #dde227;
+  -webkit-text-fill-color: #dde227;
   background: none;
+}
+
+/* Text selection */
+::selection {
+  background: #dde227;
+  color: #0a0a0b;
+}
+::-moz-selection {
+  background: #dde227;
+  color: #0a0a0b;
+}
+
+/* CTA primary: brighten shadow on hover (color handled via Tailwind hover:bg-[#FFFF33]) */
+.cta-primary:hover {
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.22) inset,
+    0 18px 44px -8px rgba(255, 255, 51, 0.6) !important;
+}
+
+/* Scrollbar custom (slim, dark) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0b;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2c;
+  border-radius: 999px;
+  border: 2px solid #0a0a0b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3c;
+}
+
+/* Focus outline accesible */
+*:focus-visible {
+  outline: 2px solid #dde227;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Reveal mask (para headlines tipo Stripe) */
+.mask-reveal {
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Page scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #dde227;
+  transform-origin: 0 50%;
+  z-index: 100;
 }

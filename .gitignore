@@ -51,3 +51,8 @@ Thumbs.db
 
 # claude code local settings
 .claude/settings.local.json
+.claude/worktrees/
+
+# scratch / nested repos / demos
+/baratec-landing/
+/silverado-preview/
