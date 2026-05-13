@@ -1,25 +1,32 @@
+import StickyNav from './components/StickyNav';
+import WhatsAppFloat from './components/WhatsAppFloat';
 import BaratecHero from './sections/BaratecHero';
+import TrustStrip from './sections/TrustStrip';
+import ApplicationsSection from './sections/ApplicationsSection';
+import CasosRealesSection from './sections/CasosRealesSection';
 import ProductSection from './sections/ProductSection';
 import ProductLineSection from './sections/ProductLineSection';
-import CasosRealesSection from './sections/CasosRealesSection';
-import ApplicationsSection from './sections/ApplicationsSection';
 import ContactSection from './sections/ContactSection';
 
 export default function App() {
   return (
     <main
       style={{
-        backgroundColor: '#050505',
-        fontFamily: "'Kanit', sans-serif",
+        backgroundColor: '#0A0A0B',
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter, "Segoe UI", Roboto, sans-serif',
         overflowX: 'clip',
       }}
     >
+      <StickyNav />
       <BaratecHero />
+      <TrustStrip />
       <ProductSection />
       <ProductLineSection />
       <CasosRealesSection />
       <ApplicationsSection />
       <ContactSection />
+      <WhatsAppFloat />
     </main>
   );
 }
