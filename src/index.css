@@ -13,10 +13,10 @@
 html,
 body,
 #root {
-  background-color: #0a0a0b;
+  background-color: #fafaf7;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
     'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  color: #f2f2f0;
+  color: #0a0a0b;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -34,19 +34,19 @@ body,
     'Liberation Mono', monospace;
 }
 
-/* Headline gradient: warm off-white → cool grey */
+/* Headline gradient: dark → muted gray */
 .brand-gradient {
-  background: linear-gradient(180deg, #f2f2f0 0%, #8a8a88 100%);
+  background: linear-gradient(180deg, #0a0a0b 0%, #5c5c5a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
-/* Accent solid (premium amber-gold) */
+/* Accent solid (lima) */
 .accent-gradient {
-  color: #dde227;
-  -webkit-text-fill-color: #dde227;
+  color: #b8be0b;
+  -webkit-text-fill-color: #b8be0b;
   background: none;
 }
 
@@ -60,27 +60,27 @@ body,
   color: #0a0a0b;
 }
 
-/* CTA primary: brighten shadow on hover (color handled via Tailwind hover:bg-[#FFFF33]) */
+/* CTA primary: brighten shadow on hover */
 .cta-primary:hover {
   box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.22) inset,
-    0 18px 44px -8px rgba(255, 255, 51, 0.6) !important;
+    0 1px 0 0 rgba(255, 255, 255, 0.45) inset,
+    0 18px 44px -8px rgba(255, 255, 51, 0.55) !important;
 }
 
-/* Scrollbar custom (slim, dark) */
+/* Scrollbar custom (slim, light) */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0b;
+  background: #fafaf7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2c;
+  background: #d4d4d0;
   border-radius: 999px;
-  border: 2px solid #0a0a0b;
+  border: 2px solid #fafaf7;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3a3c;
+  background: #b8b8b3;
 }
 
 /* Focus outline accesible */

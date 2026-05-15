@@ -25,8 +25,8 @@ export default function CasosRealesSection() {
   return (
     <section
       id="casos"
-      className="relative px-6 md:px-12 py-24 md:py-32 bg-bg-soft"
-      style={{ backgroundColor: '#0F0F11' }}
+      className="relative px-6 md:px-12 py-24 md:py-32"
+      style={{ backgroundColor: '#F2F2EF' }}
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 sm:mb-20">
@@ -63,7 +63,7 @@ export default function CasosRealesSection() {
             <FadeIn key={c.src} delay={i * 0.1}>
               <article
                 className="relative rounded-2xl overflow-hidden bg-black aspect-[9/16] group"
-                style={{ border: '1px solid rgba(242,242,240,0.08)' }}
+                style={{ border: '1px solid rgba(10,10,11,0.08)' }}
               >
                 <video
                   autoPlay

@@ -45,10 +45,10 @@ export default function StickyNav() {
             : 'pointer-events-none opacity-0 -translate-y-2'
         }`}
         style={{
-          backgroundColor: 'rgba(10,10,11,0.7)',
+          backgroundColor: 'rgba(250,250,247,0.78)',
           backdropFilter: 'blur(16px) saturate(140%)',
           WebkitBackdropFilter: 'blur(16px) saturate(140%)',
-          borderBottom: '1px solid rgba(242,242,240,0.06)',
+          borderBottom: '1px solid rgba(10,10,11,0.08)',
         }}
       >
         <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 h-20">
@@ -57,7 +57,7 @@ export default function StickyNav() {
               src="/logo-b.png"
               alt="Baratec"
               className="h-12 sm:h-14 w-auto"
-              style={{ filter: 'brightness(2.3) contrast(1.1)' }}
+              style={{ filter: 'brightness(0)' }}
             />
           </a>
           <div className="hidden md:flex items-center gap-8">

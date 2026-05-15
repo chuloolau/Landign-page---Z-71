@@ -56,3 +56,11 @@ Thumbs.db
 # scratch / nested repos / demos
 /baratec-landing/
 /silverado-preview/
+/Open-Generative-AI/
+/Nueva carpeta/
+/radio/
+/CONTENIDO VARIO/
+/silverado-demo.html
+
+# vite dev cache
+.vite/

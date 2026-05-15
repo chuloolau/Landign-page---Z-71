@@ -14,14 +14,15 @@ function ManualModal({ onClose }: { onClose: () => void }) {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
+      style={{ backgroundColor: 'rgba(10,10,11,0.55)', backdropFilter: 'blur(10px)' }}
       onClick={onClose}
     >
       <div
         className="relative rounded-2xl overflow-hidden max-w-sm w-full p-8 flex flex-col items-center gap-6"
         style={{
-          backgroundColor: '#141416',
-          border: '1px solid rgba(242,242,240,0.08)',
+          backgroundColor: '#FFFFFF',
+          border: '1px solid rgba(10,10,11,0.08)',
+          boxShadow: '0 20px 60px -10px rgba(10,10,11,0.25)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -148,7 +149,10 @@ export default function ProductLineSection() {
           <FadeIn>
             <article
               className="relative rounded-2xl overflow-hidden bg-white"
-              style={{ border: '1px solid rgba(242,242,240,0.08)' }}
+              style={{
+                border: '1px solid rgba(10,10,11,0.08)',
+                boxShadow: '0 30px 80px -20px rgba(10,10,11,0.18)',
+              }}
             >
               {/* Showcase: imagen activa con crossfade */}
               <div className="relative aspect-[16/10] w-full bg-white">
@@ -334,7 +338,7 @@ export default function ProductLineSection() {
               {/* Tabs row */}
               <div
                 className="grid grid-cols-2 sm:grid-cols-4 gap-px"
-                style={{ backgroundColor: 'rgba(242,242,240,0.06)' }}
+                style={{ backgroundColor: 'rgba(10,10,11,0.08)' }}
               >
                 {views.map((v) => {
                   const isActive = v.id === activeId;
@@ -344,7 +348,7 @@ export default function ProductLineSection() {
                       onClick={() => setActiveId(v.id)}
                       className="group relative px-3 py-4 sm:px-4 sm:py-5 text-left transition-colors"
                       style={{
-                        backgroundColor: isActive ? '#18181B' : '#0F0F11',
+                        backgroundColor: isActive ? '#F2F2EF' : '#FFFFFF',
                       }}
                     >
                       <div className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-ink/45 mb-1">

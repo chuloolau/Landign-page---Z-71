@@ -56,7 +56,7 @@ export default function ContactSection() {
       className="relative px-6 md:px-12 py-24 md:py-32"
       style={{
         background:
-          'radial-gradient(circle at 75% 0%, rgba(221,226,39,0.12) 0%, rgba(10,10,11,0) 55%), #0A0A0B',
+          'radial-gradient(circle at 75% 0%, rgba(221,226,39,0.18) 0%, rgba(250,250,247,0) 55%), #FAFAF7',
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -113,10 +113,11 @@ export default function ContactSection() {
                   href={c.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="group flex items-start gap-5 p-5 sm:p-6 rounded-2xl transition-all hover:bg-bg-soft"
+                  className="group flex items-start gap-5 p-5 sm:p-6 rounded-2xl transition-all hover:-translate-y-0.5"
                   style={{
-                    backgroundColor: '#141416',
-                    border: '1px solid rgba(242,242,240,0.06)',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid rgba(10,10,11,0.08)',
+                    boxShadow: '0 1px 0 0 rgba(10,10,11,0.03)',
                   }}
                 >
                   <div
@@ -154,7 +155,7 @@ export default function ContactSection() {
 
       <footer
         className="max-w-7xl mx-auto mt-20 sm:mt-28 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-        style={{ borderTop: '1px solid rgba(242,242,240,0.06)' }}
+        style={{ borderTop: '1px solid rgba(10,10,11,0.10)' }}
       >
         <div className="font-display font-bold uppercase tracking-[0.25em] text-ink text-sm">
           Baratec

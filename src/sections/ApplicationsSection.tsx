@@ -63,7 +63,7 @@ export default function ApplicationsSection() {
             <FadeIn key={app.tag} delay={i * 0.1}>
               <article
                 className="relative rounded-2xl overflow-hidden h-[420px] sm:h-[460px] md:h-[520px] group cursor-pointer"
-                style={{ border: '1px solid rgba(242,242,240,0.08)' }}
+                style={{ border: '1px solid rgba(10,10,11,0.08)' }}
               >
                 <img
                   src={app.image}
@@ -79,14 +79,14 @@ export default function ApplicationsSection() {
                   }}
                 />
                 <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/65">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/75">
                     {app.tag} / Baratec
                   </span>
                   <div>
-                    <h3 className="font-display font-bold text-ink tracking-[-0.02em] text-3xl sm:text-4xl md:text-5xl mb-3">
+                    <h3 className="font-display font-bold text-white tracking-[-0.02em] text-3xl sm:text-4xl md:text-5xl mb-3">
                       {app.title}
                     </h3>
-                    <p className="text-ink/70 leading-relaxed text-sm md:text-base max-w-md">
+                    <p className="text-white/80 leading-relaxed text-sm md:text-base max-w-md">
                       {app.description}
                     </p>
                   </div>
