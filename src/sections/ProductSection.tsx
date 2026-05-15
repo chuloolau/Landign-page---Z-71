@@ -123,8 +123,9 @@ function EasingsDemo() {
               key={r.label}
               className="row relative rounded-xl px-3 py-2.5 overflow-hidden"
               style={{
-                backgroundColor: '#141416',
-                border: '1px solid rgba(242,242,240,0.06)',
+                backgroundColor: '#FFFFFF',
+                border: '1px solid rgba(10,10,11,0.08)',
+                boxShadow: '0 1px 0 0 rgba(10,10,11,0.04)',
               }}
             >
               <div className="flex items-center justify-between mb-2">
@@ -181,9 +182,9 @@ export default function ProductSection() {
           <div
             className="relative rounded-2xl overflow-hidden aspect-[4/5] w-full"
             style={{
-              border: '1px solid rgba(242,242,240,0.08)',
+              border: '1px solid rgba(10,10,11,0.08)',
               background:
-                'radial-gradient(circle at 30% 30%, rgba(221,226,39,0.08) 0%, rgba(10,10,11,0) 60%), #0F0F11',
+                'radial-gradient(circle at 30% 30%, rgba(221,226,39,0.10) 0%, rgba(255,255,255,0) 60%), #FFFFFF',
             }}
           >
             <img
@@ -196,7 +197,7 @@ export default function ProductSection() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  'linear-gradient(180deg, rgba(10,10,11,0) 55%, rgba(10,10,11,0.85) 100%)',
+                  'linear-gradient(180deg, rgba(255,255,255,0) 55%, rgba(255,255,255,0.92) 100%)',
               }}
             />
             <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4">
@@ -227,8 +228,8 @@ export default function ProductSection() {
           <div
             className="relative rounded-2xl overflow-hidden flex-1 min-h-[420px]"
             style={{
-              border: '1px solid rgba(242,242,240,0.08)',
-              backgroundColor: '#0F0F11',
+              border: '1px solid rgba(10,10,11,0.08)',
+              backgroundColor: '#FFFFFF',
             }}
           >
             <img
@@ -241,7 +242,7 @@ export default function ProductSection() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  'linear-gradient(180deg, rgba(10,10,11,0) 45%, rgba(10,10,11,0.9) 100%)',
+                  'linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.92) 100%)',
               }}
             />
             <div className="absolute bottom-5 left-5 right-5">
@@ -290,7 +291,7 @@ export default function ProductSection() {
           <FadeIn x={30} y={0} delay={0.3}>
             <dl
               className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 pt-6"
-              style={{ borderTop: '1px solid rgba(242,242,240,0.08)' }}
+              style={{ borderTop: '1px solid rgba(10,10,11,0.10)' }}
             >
               {specs.map((s) => (
                 <div key={s.label} className="flex flex-col gap-1.5">
@@ -316,8 +317,8 @@ export default function ProductSection() {
           <div
             className="relative rounded-2xl overflow-hidden h-[260px]"
             style={{
-              border: '1px solid rgba(242,242,240,0.08)',
-              backgroundColor: '#0F0F11',
+              border: '1px solid rgba(10,10,11,0.08)',
+              backgroundColor: '#FFFFFF',
             }}
           >
             <img
@@ -330,7 +331,7 @@ export default function ProductSection() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  'linear-gradient(180deg, rgba(10,10,11,0) 35%, rgba(10,10,11,0.9) 100%)',
+                  'linear-gradient(180deg, rgba(255,255,255,0) 35%, rgba(255,255,255,0.92) 100%)',
               }}
             />
             <div className="absolute bottom-5 left-5 right-5">

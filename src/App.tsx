@@ -12,7 +12,7 @@ export default function App() {
   return (
     <main
       style={{
-        backgroundColor: '#0A0A0B',
+        backgroundColor: '#FAFAF7',
         fontFamily:
           '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter, "Segoe UI", Roboto, sans-serif',
         overflowX: 'clip',

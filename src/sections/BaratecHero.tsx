@@ -94,14 +94,14 @@ export default function BaratecHero() {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(180deg, rgba(10,10,11,0.15) 0%, rgba(10,10,11,0.05) 25%, rgba(10,10,11,0.55) 65%, rgba(10,10,11,0.98) 100%)',
+            'linear-gradient(180deg, rgba(250,250,247,0) 0%, rgba(250,250,247,0.45) 60%, rgba(250,250,247,0.95) 100%)',
         }}
       />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(circle at 80% 20%, rgba(221,226,39,0.10) 0%, rgba(10,10,11,0) 50%)',
+            'radial-gradient(circle at 80% 20%, rgba(221,226,39,0.18) 0%, rgba(250,250,247,0) 55%)',
         }}
       />
 
@@ -111,10 +111,7 @@ export default function BaratecHero() {
             src="/logo-b.png"
             alt="Baratec"
             className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto"
-            style={{
-              filter:
-                'brightness(2.3) contrast(1.1) drop-shadow(0 4px 16px rgba(0,0,0,0.55))',
-            }}
+            style={{ filter: 'brightness(0)' }}
           />
         </a>
         <div className="hidden md:flex items-center gap-8">

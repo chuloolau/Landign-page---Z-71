@@ -21,7 +21,7 @@ const items = [
 
 export default function TrustStrip() {
   return (
-    <section className="relative bg-bg border-y border-ink/[0.06] py-10 sm:py-12 md:py-16 px-6 md:px-12">
+    <section className="relative bg-bg-soft border-y border-ink/[0.08] py-10 sm:py-12 md:py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
         {items.map((item, i) => (
           <FadeIn key={item.label} delay={i * 0.08}>

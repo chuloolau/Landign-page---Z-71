@@ -33,14 +33,14 @@ export default {
       },
       colors: {
         bg: {
-          DEFAULT: '#0A0A0B',
-          soft: '#141416',
-          card: '#18181B',
+          DEFAULT: '#FAFAF7',
+          soft: '#F2F2EF',
+          card: '#FFFFFF',
         },
         ink: {
-          DEFAULT: '#F2F2F0',
-          dim: '#8A8A88',
-          mute: '#5C5C5A',
+          DEFAULT: '#0A0A0B',
+          dim: '#5C5C5A',
+          mute: '#8A8A88',
         },
         accent: {
           DEFAULT: '#DDE227',
