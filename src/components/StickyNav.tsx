@@ -56,8 +56,7 @@ export default function StickyNav() {
             <img
               src="/logo-b.png"
               alt="Baratec"
-              className="h-12 sm:h-14 w-auto"
-              style={{ filter: 'brightness(0)' }}
+              className="h-9 sm:h-10 w-auto"
             />
           </a>
           <div className="hidden md:flex items-center gap-8">

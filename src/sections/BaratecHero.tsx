@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { createTimeline, stagger, splitText } from 'animejs';
+import { animate, stagger, splitText } from 'animejs';
 import FadeIn from '../components/FadeIn';
 import CTAButton from '../components/CTAButton';
 
@@ -12,83 +12,40 @@ const WHATSAPP_HREF =
 
 export default function BaratecHero() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
-  const wordsRef = useRef<HTMLElement[]>([]);
-  const charsRef = useRef<HTMLElement[]>([]);
-  const playingRef = useRef(false);
-
-  const playFullCycle = () => {
-    if (playingRef.current) return;
-    if (!wordsRef.current.length) return;
-    playingRef.current = true;
-
-    const tl = createTimeline({
-      defaults: { ease: 'inOut(3)', duration: 900 },
-      onComplete: () => {
-        playingRef.current = false;
-      },
-    });
-
-    // 1) palabras entran a su lugar
-    tl.add(
-      wordsRef.current,
-      {
-        y: [
-          ($el: HTMLElement) =>
-            +($el.dataset.line ?? 0) % 2 ? '100%' : '-100%',
-          '0%',
-        ],
-        delay: stagger(100),
-      },
-    );
-
-    // 2) chars salen aleatorios — con 1100ms de pausa después de las palabras
-    tl.add(
-      charsRef.current,
-      {
-        y: ($el: HTMLElement) =>
-          +($el.dataset.line ?? 0) % 2 ? '100%' : '-100%',
-        delay: stagger(50, { from: 'random' }),
-      },
-      '+=1100',
-    );
-
-    // 3) chars vuelven → título queda VISIBLE
-    tl.add(
-      charsRef.current,
-      {
-        y: '0%',
-        delay: stagger(50, { from: 'random' }),
-      },
-    );
-
-    tl.init();
-  };
 
   useEffect(() => {
     const el = titleRef.current;
     if (!el) return;
+    const originalHTML = el.innerHTML;
 
-    const { words, chars } = splitText(el, {
-      words: { wrap: 'clip' },
-      chars: true,
+    const { chars } = splitText(el, {
+      chars: { wrap: 'clip' },
     });
-    wordsRef.current = words as unknown as HTMLElement[];
-    charsRef.current = chars as unknown as HTMLElement[];
 
-    playFullCycle();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const anim = animate(chars, {
+      y: ['75%', '0%'],
+      duration: 750,
+      ease: 'out(3)',
+      delay: stagger(50),
+    });
+
+    return () => {
+      anim.pause();
+      el.innerHTML = originalHTML;
+    };
   }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col w-full overflow-hidden bg-bg">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
+      <img
+        src="/2026-slld-ext-gal-20.avif"
+        alt=""
+        aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
-        src="/hero-rotaviva.mp4"
+        style={{
+          objectPosition: '50% 50%',
+          transform: 'translateX(-50%) scale(0.85)',
+        }}
       />
       <div
         className="absolute inset-0"
@@ -110,8 +67,7 @@ export default function BaratecHero() {
           <img
             src="/logo-b.png"
             alt="Baratec"
-            className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto"
-            style={{ filter: 'brightness(0)' }}
+            className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto"
           />
         </a>
         <div className="hidden md:flex items-center gap-8">
@@ -150,7 +106,7 @@ export default function BaratecHero() {
         </CTAButton>
       </nav>
 
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto w-full pt-16 pb-20 sm:pb-24 md:pb-28">
+      <div className="relative z-10 flex-1 flex flex-col items-end justify-center px-6 md:px-12 max-w-7xl mx-auto w-full pt-16 pb-20 sm:pb-24 md:pb-28">
         <FadeIn delay={0.1} y={20}>
           <div className="flex items-center gap-3 mb-8 sm:mb-10">
             <div className="h-px w-10 bg-ink/40" />
@@ -163,11 +119,10 @@ export default function BaratecHero() {
         <FadeIn delay={0.25} y={40}>
           <h1
             ref={titleRef}
-            onMouseEnter={playFullCycle}
-            className="font-display font-bold leading-[0.92] tracking-[-0.04em] text-ink cursor-default"
-            style={{ fontSize: 'clamp(2.75rem, 8.5vw, 7.5rem)' }}
+            className="font-display font-bold leading-[0.92] tracking-[-0.04em] text-white text-right cursor-default"
+            style={{ fontSize: 'clamp(3.25rem, 10.5vw, 9.5rem)' }}
           >
-            Baratec
+            BARATEC
             <br />
             <span className="accent-gradient">Cambia tu manera de andar.</span>
           </h1>
