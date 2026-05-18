@@ -1,163 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { animate, waapi, cubicBezier, spring } from 'animejs';
 import FadeIn from '../components/FadeIn';
-
-function EasingsDemo() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  const runAnimations = () => {
-    const root = containerRef.current;
-    if (!root) return;
-
-    const sq1 = root.querySelector('.row:nth-child(1) .square') as HTMLElement | null;
-    const sq2 = root.querySelector('.row:nth-child(2) .square') as HTMLElement | null;
-    const sq3 = root.querySelector('.row:nth-child(3) .square') as HTMLElement | null;
-    const spinner = root.querySelector('#curve-spinner');
-
-    // medir el ancho del track real (el padre del square) — translateX(100%) sería del propio square, no nos sirve
-    const trackWidth = sq1?.parentElement?.clientWidth ?? 240;
-    const squareSize = sq1?.clientWidth ?? 24;
-    const travel = trackWidth - squareSize; // pixels reales
-
-    if (sq1) {
-      animate(sq1, {
-        x: travel,
-        rotate: 360,
-        duration: 1400,
-        ease: 'out(3)',
-      });
-    }
-    if (sq2) {
-      animate(sq2, {
-        x: travel,
-        rotate: 360,
-        duration: 1400,
-        ease: cubicBezier(0.7, 0.1, 0.5, 0.9),
-      });
-    }
-    if (sq3) {
-      waapi.animate(sq3, {
-        x: travel,
-        rotate: 360,
-        duration: 1400,
-        ease: spring({ bounce: 0.35 }),
-      });
-      // Pulso extra de scale sobre la fila 3 (Off-road)
-      animate(sq3, {
-        scale: [1, 0.5, 1],
-        duration: 1200,
-        delay: 1500,
-        ease: 'inOutSine',
-      });
-    }
-    // Spinner decorativo rotando 1 turn
-    if (spinner) {
-      animate(spinner as HTMLElement, {
-        rotate: '1turn',
-        duration: 2400,
-        ease: 'inOutCubic',
-      });
-    }
-  };
-
-  useEffect(() => {
-    const node = containerRef.current;
-    if (!node) return;
-
-    let armed = true;
-    let timeoutId: number | undefined;
-
-    const fire = () => {
-      if (!armed || !containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const visible = rect.top < window.innerHeight && rect.bottom > 0;
-      if (visible) {
-        armed = false;
-        timeoutId = window.setTimeout(() => runAnimations(), 120);
-        window.removeEventListener('scroll', fire);
-      }
-    };
-
-    window.requestAnimationFrame(() => fire());
-    window.addEventListener('scroll', fire, { passive: true });
-
-    return () => {
-      armed = false;
-      if (timeoutId) window.clearTimeout(timeoutId);
-      window.removeEventListener('scroll', fire);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const rows = [
-    { label: 'Estándar', ease: 'ease · out(3)' },
-    { label: 'Sport', ease: 'cubic-bezier' },
-    { label: 'Off-road', ease: 'spring · bounce .35' },
-  ];
-
-  return (
-    <div ref={containerRef} className="mt-8">
-      <FadeIn>
-        <div className="flex items-center gap-3 mb-5">
-          <div className="h-px w-10 bg-ink/30" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/55">
-            Curvas de respuesta
-          </span>
-          <svg
-            id="curve-spinner"
-            viewBox="0 0 24 24"
-            className="ml-auto w-4 h-4 flex-shrink-0"
-            style={{ color: '#DDE227' }}
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="6 4" />
-            <circle cx="12" cy="12" r="2" fill="currentColor" />
-          </svg>
-        </div>
-      </FadeIn>
-
-      <FadeIn delay={0.1}>
-        <div className="space-y-2.5">
-          {rows.map((r) => (
-            <div
-              key={r.label}
-              className="row relative rounded-xl px-3 py-2.5 overflow-hidden"
-              style={{
-                backgroundColor: '#FFFFFF',
-                border: '1px solid rgba(10,10,11,0.08)',
-                boxShadow: '0 1px 0 0 rgba(10,10,11,0.04)',
-              }}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-display font-semibold text-ink text-xs">
-                  {r.label}
-                </span>
-                <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink/45">
-                  {r.ease}
-                </span>
-              </div>
-              <div className="relative h-6 w-full">
-                <div
-                  className="square absolute top-1/2 -translate-y-1/2 left-0 w-6 h-6 rounded-sm"
-                  style={{
-                    background: '#DDE227',
-                    boxShadow: '0 4px 12px -2px rgba(221,226,39,0.5)',
-                  }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </FadeIn>
-
-      <FadeIn delay={0.25}>
-        <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-ink/40 mt-4">
-          3 set-ups · 1 misma plataforma
-        </p>
-      </FadeIn>
-    </div>
-  );
-}
 
 const specs = [
   { label: 'Construcción', value: 'Aluminio anodizado' },
@@ -177,52 +18,6 @@ export default function ProductSection() {
         <FadeIn
           x={-30}
           y={0}
-          className="lg:col-span-5 flex flex-col gap-6"
-        >
-          <div
-            className="relative rounded-2xl overflow-hidden aspect-[4/5] w-full"
-            style={{
-              border: '1px solid rgba(10,10,11,0.08)',
-              background:
-                'radial-gradient(circle at 30% 30%, rgba(221,226,39,0.10) 0%, rgba(255,255,255,0) 60%), #FFFFFF',
-            }}
-          >
-            <img
-              src="/producto-rotula.jpg"
-              alt="Detalle del amortiguador Baratec PRO con rótula"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  'linear-gradient(180deg, rgba(255,255,255,0) 55%, rgba(255,255,255,0.92) 100%)',
-              }}
-            />
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4">
-              <div>
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/55">
-                  Modelo
-                </span>
-                <div className="font-display font-bold text-ink tracking-tight text-xl sm:text-2xl mt-1">
-                  Baratec High
-                </div>
-              </div>
-              <div
-                className="font-mono px-3 py-1.5 rounded-full text-[10px] uppercase tracking-[0.25em] font-medium"
-                style={{ background: '#DDE227', color: '#0A0A0B' }}
-              >
-                En stock
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn
-          x={0}
-          y={30}
-          delay={0.15}
           className="lg:col-span-3 hidden lg:flex flex-col"
         >
           <div
@@ -254,6 +49,55 @@ export default function ProductSection() {
               </div>
               <div className="text-ink/60 text-xs mt-1.5">
                 Industria argentina · Almafuerte
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn
+          x={0}
+          y={30}
+          delay={0.15}
+          className="lg:col-span-5 flex flex-col gap-6"
+        >
+          <div
+            className="relative rounded-2xl overflow-hidden aspect-[4/5] w-full"
+            style={{
+              border: '1px solid rgba(10,10,11,0.08)',
+              background:
+                'radial-gradient(circle at 30% 30%, rgba(221,226,39,0.10) 0%, rgba(255,255,255,0) 60%), #FFFFFF',
+            }}
+          >
+            <video
+              src="/hero-rotaviva.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'linear-gradient(180deg, rgba(255,255,255,0) 55%, rgba(255,255,255,0.92) 100%)',
+              }}
+            />
+            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4">
+              <div>
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/55">
+                  Modelo
+                </span>
+                <div className="font-display font-bold text-ink tracking-tight text-xl sm:text-2xl mt-1">
+                  Baratec High
+                </div>
+              </div>
+              <div
+                className="font-mono px-3 py-1.5 rounded-full text-[10px] uppercase tracking-[0.25em] font-medium"
+                style={{ background: '#DDE227', color: '#0A0A0B' }}
+              >
+                En stock
               </div>
             </div>
           </div>
@@ -305,8 +149,6 @@ export default function ProductSection() {
               ))}
             </dl>
           </FadeIn>
-
-          <EasingsDemo />
         </div>
 
         <FadeIn

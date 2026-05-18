@@ -4,10 +4,14 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 
 const VEHICLE_IMAGES = [
-  { src: '/silverado-z71.png', color: 'Plata metálico' },
-  { src: '/GNT.avif', color: 'Rojo cherry' },
-  { src: '/silverado-z71-negro-metalico.avif', color: 'Negro metálico' },
-  { src: '/z71---rip-tide.avif', color: 'Azul Rip Tide' },
+  { src: '/silverado-z71.png', color: 'Plata metálico', swatch: '#C8CBCE' },
+  { src: '/GNT.avif', color: 'Rojo cherry', swatch: '#9B1C2A' },
+  {
+    src: '/silverado-z71-negro-metalico.avif',
+    color: 'Negro metálico',
+    swatch: '#0F1012',
+  },
+  { src: '/z71---rip-tide.avif', color: 'Azul Rip Tide', swatch: '#1F6373' },
 ];
 
 function ManualModal({ onClose }: { onClose: () => void }) {
@@ -69,7 +73,12 @@ type View = {
   hint: string;
   image: string;
   badge?: string;
+  modelSrc?: string;
 };
+
+// URL del modelo 3D. Cambiá esto por /silverado-z71.glb cuando subas tu propio archivo a public/
+const VEHICLE_MODEL_URL =
+  'https://modelviewer.dev/shared-assets/models/glTF-Sample-Assets/Models/ToyCar/glTF-Binary/ToyCar.glb';
 
 export default function ProductLineSection() {
   const [showModal, setShowModal] = useState(false);
@@ -85,6 +94,14 @@ export default function ProductLineSection() {
       hint: `Silverado Z-71 · ${currentVehicle.color}`,
       image: currentVehicle.src,
       badge: 'Modelo objetivo',
+    },
+    {
+      id: '3d',
+      label: '3D',
+      hint: 'Explorá el vehículo en 360°',
+      image: '',
+      badge: 'Interactivo',
+      modelSrc: VEHICLE_MODEL_URL,
     },
     {
       id: 'kit',
@@ -154,19 +171,51 @@ export default function ProductLineSection() {
                 boxShadow: '0 30px 80px -20px rgba(10,10,11,0.18)',
               }}
             >
-              {/* Showcase: imagen activa con crossfade */}
+              {/* Showcase: imagen o modelo 3D activo con crossfade */}
               <div className="relative aspect-[16/10] w-full bg-white">
                 <AnimatePresence mode="wait">
-                  <motion.img
-                    key={active.image}
-                    src={active.image}
-                    alt={active.label}
-                    initial={{ opacity: 0, scale: 1.02 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="absolute inset-0 w-full h-full object-contain p-6 sm:p-10"
-                  />
+                  {active.modelSrc ? (
+                    <motion.div
+                      key={`model-${active.id}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0"
+                    >
+                      <model-viewer
+                        src={active.modelSrc}
+                        alt="Silverado Z-71 3D"
+                        camera-controls
+                        auto-rotate
+                        auto-rotate-delay={1500}
+                        rotation-per-second="22deg"
+                        shadow-intensity="1"
+                        shadow-softness="0.8"
+                        exposure="1"
+                        interaction-prompt="auto"
+                        loading="eager"
+                        reveal="auto"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          backgroundColor: '#FFFFFF',
+                          ['--poster-color' as string]: '#FFFFFF',
+                        }}
+                      />
+                    </motion.div>
+                  ) : (
+                    <motion.img
+                      key={active.image}
+                      src={active.image}
+                      alt={active.label}
+                      initial={{ opacity: 0, scale: 1.02 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                      className="absolute inset-0 w-full h-full object-contain p-6 sm:p-10"
+                    />
+                  )}
                 </AnimatePresence>
 
                 {/* Gradient overlay bottom */}
@@ -258,37 +307,6 @@ export default function ProductLineSection() {
                   )}
                 </AnimatePresence>
 
-                {/* Indicators del carrusel — solo en vista Vehículo */}
-                <AnimatePresence>
-                  {active.id === 'vehiculo' && (
-                    <motion.div
-                      key="carousel-dots"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute top-5 right-5 sm:top-6 sm:right-6 flex items-center gap-2 px-3 py-2 rounded-full z-10"
-                      style={{ background: 'rgba(10,10,11,0.75)', backdropFilter: 'blur(8px)' }}
-                    >
-                      {VEHICLE_IMAGES.map((v, i) => {
-                        const isActive = i === vehicleIdx;
-                        return (
-                          <button
-                            key={v.src}
-                            onClick={() => setVehicleIdx(i)}
-                            aria-label={v.color}
-                            className="relative h-1.5 rounded-full transition-all duration-300"
-                            style={{
-                              width: isActive ? '24px' : '6px',
-                              background: isActive ? '#DDE227' : 'rgba(255,255,255,0.35)',
-                            }}
-                          />
-                        );
-                      })}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
                 {/* Botón flotante "Ver manual QR" solo en vista Delantero */}
                 <AnimatePresence>
                   {active.id === 'delantero' && (
@@ -335,9 +353,63 @@ export default function ProductLineSection() {
                 </AnimatePresence>
               </div>
 
+              {/* Color swatches — solo en vista Vehículo (estilo configurador etec) */}
+              <AnimatePresence>
+                {active.id === 'vehiculo' && (
+                  <motion.div
+                    key="color-swatches"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex flex-col items-center gap-2 py-5 sm:py-6 bg-white"
+                    style={{ borderTop: '1px solid rgba(10,10,11,0.06)' }}
+                  >
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      {VEHICLE_IMAGES.map((v, i) => {
+                        const isActive = i === vehicleIdx;
+                        return (
+                          <button
+                            key={v.src}
+                            onClick={() => setVehicleIdx(i)}
+                            aria-label={v.color}
+                            title={v.color}
+                            className="relative rounded-full transition-all duration-300 hover:scale-110 focus:outline-none"
+                            style={{
+                              width: isActive ? '28px' : '22px',
+                              height: isActive ? '28px' : '22px',
+                              backgroundColor: v.swatch,
+                              border:
+                                v.swatch.toLowerCase() === '#c8cbce'
+                                  ? '1px solid rgba(10,10,11,0.18)'
+                                  : '1px solid rgba(10,10,11,0.08)',
+                              boxShadow: isActive
+                                ? '0 0 0 2px #FFFFFF, 0 0 0 3.5px #0A0A0B, 0 4px 12px -2px rgba(0,0,0,0.25)'
+                                : '0 1px 3px 0 rgba(0,0,0,0.18)',
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={`swatch-name-${vehicleIdx}`}
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.25 }}
+                        className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/55"
+                      >
+                        {currentVehicle.color}
+                      </motion.span>
+                    </AnimatePresence>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               {/* Tabs row */}
               <div
-                className="grid grid-cols-2 sm:grid-cols-4 gap-px"
+                className="grid grid-cols-2 sm:grid-cols-5 gap-px"
                 style={{ backgroundColor: 'rgba(10,10,11,0.08)' }}
               >
                 {views.map((v) => {

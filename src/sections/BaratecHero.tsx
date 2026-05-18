@@ -12,6 +12,30 @@ const WHATSAPP_HREF =
 
 export default function BaratecHero() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const charsRef = useRef<HTMLElement[]>([]);
+  const playingRef = useRef(false);
+
+  const playStagger = () => {
+    if (playingRef.current) return;
+    if (!charsRef.current.length) return;
+    playingRef.current = true;
+
+    // reset to starting position so re-play is visible
+    charsRef.current.forEach((c) => {
+      c.style.transform = 'translateY(75%)';
+    });
+
+    const anim = animate(charsRef.current, {
+      y: ['75%', '0%'],
+      duration: 750,
+      ease: 'out(3)',
+      delay: stagger(50),
+      onComplete: () => {
+        playingRef.current = false;
+      },
+    });
+    return anim;
+  };
 
   useEffect(() => {
     const el = titleRef.current;
@@ -21,18 +45,16 @@ export default function BaratecHero() {
     const { chars } = splitText(el, {
       chars: { wrap: 'clip' },
     });
+    charsRef.current = chars as unknown as HTMLElement[];
 
-    const anim = animate(chars, {
-      y: ['75%', '0%'],
-      duration: 750,
-      ease: 'out(3)',
-      delay: stagger(50),
-    });
+    playStagger();
 
     return () => {
-      anim.pause();
+      playingRef.current = false;
+      charsRef.current = [];
       el.innerHTML = originalHTML;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -42,17 +64,7 @@ export default function BaratecHero() {
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{
-          objectPosition: '50% 50%',
-          transform: 'translateX(-50%) scale(0.85)',
-        }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(250,250,247,0) 0%, rgba(250,250,247,0.45) 60%, rgba(250,250,247,0.95) 100%)',
-        }}
+        style={{ objectPosition: '50% 50%' }}
       />
       <div
         className="absolute inset-0 pointer-events-none"
@@ -106,7 +118,7 @@ export default function BaratecHero() {
         </CTAButton>
       </nav>
 
-      <div className="relative z-10 flex-1 flex flex-col items-end justify-center px-6 md:px-12 max-w-7xl mx-auto w-full pt-16 pb-20 sm:pb-24 md:pb-28">
+      <div className="relative z-10 flex-1 flex flex-col items-start justify-center pl-2 md:pl-4 pr-6 md:pr-12 max-w-7xl mx-auto w-full pt-16 pb-20 sm:pb-24 md:pb-28">
         <FadeIn delay={0.1} y={20}>
           <div className="flex items-center gap-3 mb-8 sm:mb-10">
             <div className="h-px w-10 bg-ink/40" />
@@ -119,7 +131,9 @@ export default function BaratecHero() {
         <FadeIn delay={0.25} y={40}>
           <h1
             ref={titleRef}
-            className="font-display font-bold leading-[0.92] tracking-[-0.04em] text-white text-right cursor-default"
+            onMouseEnter={playStagger}
+            onClick={playStagger}
+            className="font-display font-bold leading-[0.92] tracking-[-0.04em] text-white text-left cursor-pointer select-none"
             style={{ fontSize: 'clamp(3.25rem, 10.5vw, 9.5rem)' }}
           >
             BARATEC

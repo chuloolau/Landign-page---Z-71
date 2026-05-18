@@ -62,31 +62,51 @@ export default function ApplicationsSection() {
           {applications.map((app, i) => (
             <FadeIn key={app.tag} delay={i * 0.1}>
               <article
-                className="relative rounded-2xl overflow-hidden h-[420px] sm:h-[460px] md:h-[520px] group cursor-pointer"
-                style={{ border: '1px solid rgba(10,10,11,0.08)' }}
+                className="relative rounded-2xl overflow-hidden h-[420px] sm:h-[460px] md:h-[520px] group cursor-pointer transition-all duration-500 hover:-translate-y-1"
+                style={{
+                  border: '1px solid rgba(10,10,11,0.08)',
+                  boxShadow: '0 1px 0 0 rgba(10,10,11,0.03)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(221,226,39,0.6)';
+                  e.currentTarget.style.boxShadow =
+                    '0 18px 40px -16px rgba(10,10,11,0.35), 0 0 0 1px rgba(221,226,39,0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(10,10,11,0.08)';
+                  e.currentTarget.style.boxShadow =
+                    '0 1px 0 0 rgba(10,10,11,0.03)';
+                }}
               >
                 <img
                   src={app.image}
                   alt={app.title}
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
                 />
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-90"
                   style={{
                     background:
                       'linear-gradient(180deg, rgba(10,10,11,0) 30%, rgba(10,10,11,0.92) 100%)',
                   }}
                 />
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background:
+                      'radial-gradient(circle at 80% 100%, rgba(221,226,39,0.22) 0%, rgba(10,10,11,0) 55%)',
+                  }}
+                />
                 <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/75">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/75 transition-colors duration-300 group-hover:text-[#DDE227]">
                     {app.tag} / Baratec
                   </span>
-                  <div>
+                  <div className="transition-transform duration-500 ease-out group-hover:-translate-y-1">
                     <h3 className="font-display font-bold text-white tracking-[-0.02em] text-3xl sm:text-4xl md:text-5xl mb-3">
                       {app.title}
                     </h3>
-                    <p className="text-white/80 leading-relaxed text-sm md:text-base max-w-md">
+                    <p className="text-white/80 leading-relaxed text-sm md:text-base max-w-md transition-colors duration-300 group-hover:text-white/95">
                       {app.description}
                     </p>
                   </div>

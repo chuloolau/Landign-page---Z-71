@@ -1,6 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
-import CTAButton from '../components/CTAButton';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 
 const WHATSAPP_HREF =
@@ -21,14 +20,6 @@ type Channel = {
 };
 
 const channels: Channel[] = [
-  {
-    kind: 'svg',
-    icon: WhatsAppIcon,
-    iconBg: '#25D366',
-    label: 'WhatsApp',
-    value: 'Cotización directa',
-    href: WHATSAPP_HREF,
-  },
   {
     kind: 'img',
     icon: '/logo-gmail.png',
@@ -89,26 +80,58 @@ export default function ContactSection() {
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.3}>
-              <div className="flex flex-wrap gap-4 mt-10">
-                <CTAButton
-                  href={WHATSAPP_HREF}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Escribir por WhatsApp
-                  <ArrowUpRight size={14} className="ml-2" strokeWidth={2.5} />
-                </CTAButton>
-                <CTAButton variant="ghost" href="mailto:baratec@baratec.com">
-                  Enviar email
-                </CTAButton>
-              </div>
-            </FadeIn>
           </div>
 
           <div className="flex flex-col gap-3">
+            <FadeIn delay={0.1}>
+              <a
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group flex items-start gap-5 p-5 sm:p-6 rounded-2xl transition-all hover:-translate-y-0.5"
+                style={{
+                  background: '#DDE227',
+                  border: '1px solid rgba(10,10,11,0.10)',
+                  boxShadow:
+                    '0 1px 0 0 rgba(255,255,255,0.35) inset, 0 12px 32px -8px rgba(221,226,39,0.45)',
+                }}
+              >
+                <div
+                  className="relative w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 transition-transform group-hover:scale-105"
+                  style={{ backgroundColor: '#DDE227' }}
+                >
+                  <video
+                    src="/efecto-conversacion.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    className="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-90"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/55 mb-1.5">
+                    WhatsApp
+                  </div>
+                  <div className="text-ink font-semibold text-base sm:text-lg leading-snug break-words">
+                    Escribir por WhatsApp
+                  </div>
+                </div>
+                <span
+                  className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110"
+                  style={{
+                    backgroundColor: '#25D366',
+                    boxShadow: '0 2px 8px -1px rgba(0,0,0,0.25)',
+                  }}
+                >
+                  <WhatsAppIcon size={20} color="#FFFFFF" />
+                </span>
+              </a>
+            </FadeIn>
+
             {channels.map((c, i) => (
-              <FadeIn key={c.label} delay={0.15 + i * 0.1}>
+              <FadeIn key={c.label} delay={0.2 + i * 0.1}>
                 <a
                   href={c.href}
                   target="_blank"

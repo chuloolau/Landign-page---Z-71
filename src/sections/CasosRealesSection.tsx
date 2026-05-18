@@ -62,8 +62,21 @@ export default function CasosRealesSection() {
           {cases.map((c, i) => (
             <FadeIn key={c.src} delay={i * 0.1}>
               <article
-                className="relative rounded-2xl overflow-hidden bg-black aspect-[9/16] group"
-                style={{ border: '1px solid rgba(10,10,11,0.08)' }}
+                className="relative rounded-2xl overflow-hidden bg-black aspect-[9/16] group cursor-pointer transition-all duration-500 hover:-translate-y-1"
+                style={{
+                  border: '1px solid rgba(10,10,11,0.08)',
+                  boxShadow: '0 1px 0 0 rgba(10,10,11,0.03)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(221,226,39,0.6)';
+                  e.currentTarget.style.boxShadow =
+                    '0 18px 40px -16px rgba(10,10,11,0.4), 0 0 0 1px rgba(221,226,39,0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(10,10,11,0.08)';
+                  e.currentTarget.style.boxShadow =
+                    '0 1px 0 0 rgba(10,10,11,0.03)';
+                }}
               >
                 <video
                   autoPlay
@@ -71,18 +84,25 @@ export default function CasosRealesSection() {
                   loop
                   playsInline
                   preload="auto"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
                   src={c.src}
                 />
                 <div
-                  className="absolute inset-0 pointer-events-none"
+                  className="absolute inset-0 pointer-events-none transition-opacity duration-500 group-hover:opacity-90"
                   style={{
                     background:
                       'linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.85) 100%)',
                   }}
                 />
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background:
+                      'radial-gradient(circle at 50% 100%, rgba(221,226,39,0.2) 0%, rgba(0,0,0,0) 55%)',
+                  }}
+                />
                 {c.label ? (
-                  <div className="absolute top-4 left-4">
+                  <div className="absolute top-4 left-4 transition-transform duration-300 group-hover:-translate-y-0.5">
                     <span
                       className="font-mono text-[10px] uppercase tracking-[0.25em] font-medium px-3 py-1.5 rounded-full"
                       style={{ background: '#DDE227', color: '#0A0A0B' }}
@@ -91,8 +111,8 @@ export default function CasosRealesSection() {
                     </span>
                   </div>
                 ) : null}
-                <div className="absolute bottom-5 left-5 right-5">
-                  <p className="text-ink/90 leading-snug text-sm sm:text-base">
+                <div className="absolute bottom-5 left-5 right-5 transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                  <p className="text-white/90 leading-snug text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
                     {c.description}
                   </p>
                 </div>

@@ -4,6 +4,7 @@ import BaratecHero from './sections/BaratecHero';
 import TrustStrip from './sections/TrustStrip';
 import ApplicationsSection from './sections/ApplicationsSection';
 import CasosRealesSection from './sections/CasosRealesSection';
+import FeaturesGrid from './sections/FeaturesGrid';
 import ProductSection from './sections/ProductSection';
 import ProductLineSection from './sections/ProductLineSection';
 import ContactSection from './sections/ContactSection';
@@ -23,6 +24,7 @@ export default function App() {
       <TrustStrip />
       <ProductSection />
       <ProductLineSection />
+      <FeaturesGrid />
       <CasosRealesSection />
       <ApplicationsSection />
       <ContactSection />
