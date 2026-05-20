@@ -1,26 +1,19 @@
+import { ArrowUpRight } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
+import ParallaxBlock from '../components/ParallaxBlock';
 
 const applications = [
   {
-    tag: '01',
+    title: 'Off road',
+    image: '/2026-slld-tow-03-v2.avif',
+  },
+  {
     title: 'Campo',
-    description:
-      'Para pickups y camionetas de trabajo rural. Mantienen la altura y la respuesta del vehículo aun con carga, en caminos largos y huellas marcadas.',
     image: '/2026-slld-ext-gal-05.avif',
   },
   {
-    tag: '02',
-    title: 'Tierra',
-    description:
-      'Diseñados para ripio, tierra suelta y baches. Disipación térmica del reservorio externo para tramos largos sin perder rendimiento.',
-    image: '/2026-slld-ext-gal-20.avif',
-  },
-  {
-    tag: '03',
-    title: 'Off road',
-    description:
-      'Para 4×4 preparadas, travesías y terreno extremo. Set-up robusto, regulable, listo para piedra, dunas y obstáculos exigentes.',
-    image: '/2026-slld-tow-03-v2.avif',
+    title: 'Pickup 4×4',
+    image: '/chevrolet-silverado-z71-trail-boss-delantera-1.jpg',
   },
 ];
 
@@ -28,55 +21,25 @@ export default function ApplicationsSection() {
   return (
     <section
       id="aplicaciones"
-      className="relative px-6 md:px-12 py-24 md:py-32 bg-bg"
+      className="relative px-6 md:px-12 py-24 md:py-32 bg-white overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 sm:mb-20">
-          <div>
-            <FadeIn>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-px w-10 bg-ink/30" />
-                <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-ink/55">
-                  Aplicaciones
-                </span>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2
-                className="font-display font-bold leading-[0.95] tracking-[-0.03em] text-ink"
-                style={{ fontSize: 'clamp(2rem, 5.5vw, 4.5rem)' }}
-              >
-                Donde otros<br /> <span className="accent-gradient">ya confían.</span>
-              </h2>
-            </FadeIn>
-          </div>
-          <FadeIn delay={0.2}>
-            <p className="text-ink/60 max-w-md text-base leading-relaxed">
-              Desarrollos específicos para cada disciplina. Si corrés en una
-              categoría que no figura, escribinos: hacemos el set-up a medida.
-            </p>
-          </FadeIn>
-        </div>
+      <ParallaxBlock className="max-w-[1600px] mx-auto" range={50}>
+        {/* Título principal estilo FOX "DEFINE YOUR STYLE" */}
+        <FadeIn>
+          <h2
+            className="font-display font-black uppercase leading-[0.88] tracking-[-0.02em] text-ink text-center mb-12 sm:mb-16 md:mb-20"
+            style={{ fontSize: 'clamp(2.75rem, 11vw, 11rem)' }}
+          >
+            High Performance
+          </h2>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {applications.map((app, i) => (
-            <FadeIn key={app.tag} delay={i * 0.1}>
-              <article
-                className="relative rounded-2xl overflow-hidden h-[420px] sm:h-[460px] md:h-[520px] group cursor-pointer transition-all duration-500 hover:-translate-y-1"
-                style={{
-                  border: '1px solid rgba(10,10,11,0.08)',
-                  boxShadow: '0 1px 0 0 rgba(10,10,11,0.03)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(221,226,39,0.6)';
-                  e.currentTarget.style.boxShadow =
-                    '0 18px 40px -16px rgba(10,10,11,0.35), 0 0 0 1px rgba(221,226,39,0.25)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(10,10,11,0.08)';
-                  e.currentTarget.style.boxShadow =
-                    '0 1px 0 0 rgba(10,10,11,0.03)';
-                }}
+            <FadeIn key={app.title} delay={i * 0.1}>
+              <a
+                href="#contacto"
+                className="relative block overflow-hidden h-[400px] sm:h-[460px] md:h-[520px] group cursor-pointer transition-transform duration-500 hover:-translate-y-1"
               >
                 <img
                   src={app.image}
@@ -85,37 +48,38 @@ export default function ApplicationsSection() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
                 />
                 <div
-                  className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-90"
+                  className="absolute inset-0 pointer-events-none transition-opacity duration-500"
                   style={{
                     background:
-                      'linear-gradient(180deg, rgba(10,10,11,0) 30%, rgba(10,10,11,0.92) 100%)',
+                      'linear-gradient(180deg, rgba(10,10,11,0) 40%, rgba(10,10,11,0.85) 100%)',
                   }}
                 />
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
                     background:
-                      'radial-gradient(circle at 80% 100%, rgba(221,226,39,0.22) 0%, rgba(10,10,11,0) 55%)',
+                      'radial-gradient(circle at 50% 100%, rgba(221,226,39,0.2) 0%, rgba(10,10,11,0) 60%)',
                   }}
                 />
-                <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/75 transition-colors duration-300 group-hover:text-[#DDE227]">
-                    {app.tag} / Baratec
-                  </span>
-                  <div className="transition-transform duration-500 ease-out group-hover:-translate-y-1">
-                    <h3 className="font-display font-bold text-white tracking-[-0.02em] text-3xl sm:text-4xl md:text-5xl mb-3">
-                      {app.title}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed text-sm md:text-base max-w-md transition-colors duration-300 group-hover:text-white/95">
-                      {app.description}
-                    </p>
+                {/* Bottom-left label + Learn more (estilo FOX) */}
+                <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                  <h3 className="font-display font-black uppercase tracking-[-0.01em] text-white text-2xl sm:text-3xl md:text-4xl mb-2">
+                    {app.title}
+                  </h3>
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80 transition-colors duration-300 group-hover:text-[#DDE227]">
+                    <span>Conocer más</span>
+                    <ArrowUpRight
+                      size={12}
+                      strokeWidth={2.2}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </div>
                 </div>
-              </article>
+              </a>
             </FadeIn>
           ))}
         </div>
-      </div>
+      </ParallaxBlock>
     </section>
   );
 }

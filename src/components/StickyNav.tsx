@@ -3,7 +3,6 @@ import CTAButton from './CTAButton';
 
 const navLinks = [
   { label: 'Producto', href: '#producto' },
-  { label: 'Z-71', href: '#linea' },
   { label: 'Casos', href: '#casos' },
   { label: 'Aplicaciones', href: '#aplicaciones' },
 ];

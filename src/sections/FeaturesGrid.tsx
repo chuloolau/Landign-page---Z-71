@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowUpRight,
   Sparkle,
@@ -16,10 +18,18 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-const BACKGROUND_VIDEO =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260507_150203_44a5bd32-516a-47ce-a077-8acbf9aa8991.mp4';
-const RAISED_VIDEO =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260507_154543_d5b83fc1-9cea-44f3-b5e8-8f325935211a.mp4';
+const RAISED_VIDEO = '/hero-rotaviva.mp4';
+
+const VEHICLE_IMAGES = [
+  { src: '/silverado-z71.png', color: 'Plata metálico', swatch: '#C8CBCE' },
+  { src: '/GNT.avif', color: 'Rojo cherry', swatch: '#9B1C2A' },
+  {
+    src: '/silverado-z71-negro-metalico.avif',
+    color: 'Negro metálico',
+    swatch: '#0F1012',
+  },
+  { src: '/z71---rip-tide.avif', color: 'Azul Rip Tide', swatch: '#1F6373' },
+];
 
 const ROW_1: LucideIcon[] = [
   Figma,
@@ -123,6 +133,9 @@ function MarqueeRow({
 }
 
 export default function FeaturesGrid() {
+  const [vehicleIdx, setVehicleIdx] = useState(0);
+  const currentVehicle = VEHICLE_IMAGES[vehicleIdx];
+
   return (
     <section className="relative w-full bg-bg text-ink antialiased px-4 sm:px-6 md:px-10 lg:px-14 py-16 md:py-24 lg:py-28">
       {/* Eyebrow */}
@@ -163,71 +176,76 @@ export default function FeaturesGrid() {
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-        {/* === Column 1 — BACKGROUND === */}
-        <article className="relative rounded-2xl overflow-hidden bg-black min-h-[420px] lg:min-h-0 flex flex-col">
-          <video
-            src={BACKGROUND_VIDEO}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-80"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/70 pointer-events-none" />
-          <div className="relative z-10 flex flex-col h-full p-5 md:p-6">
-            <div className="pt-1">
-              <SectionLabel>Background</SectionLabel>
-            </div>
-            <div className="mt-auto">
-              <div
-                className="grid gap-x-3 gap-y-3 text-[12.5px] md:text-[13px] text-white/85"
-                style={{ gridTemplateColumns: 'auto auto 1fr auto' }}
-              >
-                <span className="font-mono tracking-[0.05em] text-white/70">
-                  2023-Now
-                </span>
-                <Sparkle
-                  className="h-3 w-3 mt-1.5"
-                  style={{ color: '#DDE227' }}
-                  strokeWidth={1.5}
-                />
-                <span className="font-display font-semibold text-white">
-                  Freelance Creative
-                </span>
-                <span className="font-mono text-white/55 text-right">
-                  Solo Studio
-                </span>
+        {/* === Column 1 — 01 Vehículo (configurador color) === */}
+        <article
+          className="relative rounded-2xl overflow-hidden min-h-[560px] md:min-h-[620px] lg:min-h-[680px] flex flex-col md:col-span-2 lg:col-span-1"
+          style={{
+            backgroundColor: '#FFFFFF',
+            border: '1px solid rgba(10,10,11,0.08)',
+          }}
+        >
+          {/* Showcase: imagen con crossfade */}
+          <div className="relative flex-1 min-h-[400px] md:min-h-[460px] lg:min-h-[520px]">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentVehicle.src}
+                src={currentVehicle.src}
+                alt={`Silverado Z-71 ${currentVehicle.color}`}
+                initial={{ opacity: 0, scale: 1.02 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                className="absolute inset-0 w-full h-full object-contain p-6"
+                loading="lazy"
+              />
+            </AnimatePresence>
+          </div>
 
-                <span className="font-mono tracking-[0.05em] text-white/70">
-                  2020-2023
-                </span>
-                <Sparkle
-                  className="h-3 w-3 mt-1.5"
-                  style={{ color: '#DDE227' }}
-                  strokeWidth={1.5}
-                />
-                <span className="font-display font-semibold text-white">
-                  Head of Brand Design
-                </span>
-                <span className="font-mono text-white/55 text-right">
-                  Rove Studio
-                </span>
+          <div className="relative z-10 flex flex-col p-5 md:p-6 gap-4">
+            <SectionLabel variant="light" align="start">
+              01 Vehículo
+            </SectionLabel>
 
-                <span className="font-mono tracking-[0.05em] text-white/70">
-                  2017-2020
-                </span>
-                <Sparkle
-                  className="h-3 w-3 mt-1.5"
-                  style={{ color: '#DDE227' }}
-                  strokeWidth={1.5}
-                />
-                <span className="font-display font-semibold text-white">
-                  Visual Stylist
-                </span>
-                <span className="font-mono text-white/55 text-right">
-                  Ember Works
-                </span>
+            {/* Color swatches estilo configurador etec */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex items-center gap-3">
+                {VEHICLE_IMAGES.map((v, i) => {
+                  const isActive = i === vehicleIdx;
+                  return (
+                    <button
+                      key={v.src}
+                      onClick={() => setVehicleIdx(i)}
+                      aria-label={v.color}
+                      title={v.color}
+                      className="relative rounded-full transition-all duration-300 hover:scale-110 focus:outline-none"
+                      style={{
+                        width: isActive ? '26px' : '20px',
+                        height: isActive ? '26px' : '20px',
+                        backgroundColor: v.swatch,
+                        border:
+                          v.swatch.toLowerCase() === '#c8cbce'
+                            ? '1px solid rgba(10,10,11,0.18)'
+                            : '1px solid rgba(10,10,11,0.08)',
+                        boxShadow: isActive
+                          ? '0 0 0 2px #FFFFFF, 0 0 0 3.5px #0A0A0B, 0 4px 10px -2px rgba(0,0,0,0.2)'
+                          : '0 1px 3px 0 rgba(0,0,0,0.15)',
+                      }}
+                    />
+                  );
+                })}
               </div>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={`swatch-name-${vehicleIdx}`}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.25 }}
+                  className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/55"
+                >
+                  {currentVehicle.color}
+                </motion.span>
+              </AnimatePresence>
             </div>
           </div>
         </article>

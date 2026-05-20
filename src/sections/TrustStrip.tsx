@@ -1,4 +1,5 @@
 import FadeIn from '../components/FadeIn';
+import ParallaxBlock from '../components/ParallaxBlock';
 
 const items = [
   {
@@ -22,7 +23,8 @@ const items = [
 export default function TrustStrip() {
   return (
     <section className="relative bg-bg-soft border-y border-ink/[0.08] py-10 sm:py-12 md:py-16 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+      <ParallaxBlock className="max-w-7xl mx-auto" range={40}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
         {items.map((item, i) => (
           <FadeIn key={item.label} delay={i * 0.08}>
             <div className="flex flex-col gap-1.5">
@@ -35,7 +37,8 @@ export default function TrustStrip() {
             </div>
           </FadeIn>
         ))}
-      </div>
+        </div>
+      </ParallaxBlock>
     </section>
   );
 }

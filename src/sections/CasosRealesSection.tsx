@@ -1,4 +1,5 @@
 import FadeIn from '../components/FadeIn';
+import ParallaxBlock from '../components/ParallaxBlock';
 
 const cases = [
   {
@@ -28,7 +29,7 @@ export default function CasosRealesSection() {
       className="relative px-6 md:px-12 py-24 md:py-32"
       style={{ backgroundColor: '#F2F2EF' }}
     >
-      <div className="max-w-7xl mx-auto">
+      <ParallaxBlock className="max-w-7xl mx-auto" range={50}>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 sm:mb-20">
           <div>
             <FadeIn>
@@ -120,7 +121,7 @@ export default function CasosRealesSection() {
             </FadeIn>
           ))}
         </div>
-      </div>
+      </ParallaxBlock>
     </section>
   );
 }

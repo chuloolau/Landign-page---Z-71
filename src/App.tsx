@@ -4,9 +4,8 @@ import BaratecHero from './sections/BaratecHero';
 import TrustStrip from './sections/TrustStrip';
 import ApplicationsSection from './sections/ApplicationsSection';
 import CasosRealesSection from './sections/CasosRealesSection';
-import FeaturesGrid from './sections/FeaturesGrid';
-import ProductSection from './sections/ProductSection';
-import ProductLineSection from './sections/ProductLineSection';
+import ProductCarousel from './sections/ProductCarousel';
+import VideoCallout from './sections/VideoCallout';
 import ContactSection from './sections/ContactSection';
 
 export default function App() {
@@ -21,12 +20,11 @@ export default function App() {
     >
       <StickyNav />
       <BaratecHero />
-      <TrustStrip />
-      <ProductSection />
-      <ProductLineSection />
-      <FeaturesGrid />
-      <CasosRealesSection />
       <ApplicationsSection />
+      <ProductCarousel />
+      <VideoCallout />
+      <CasosRealesSection />
+      <TrustStrip />
       <ContactSection />
       <WhatsAppFloat />
     </main>
