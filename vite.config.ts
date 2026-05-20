@@ -10,6 +10,8 @@ export default defineConfig({
       '.ngrok.io',
       '.ngrok-free.app',
       '.trycloudflare.com',
+      '.lhr.life',
+      '.localhost.run',
     ],
   },
 });
