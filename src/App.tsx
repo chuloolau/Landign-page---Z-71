@@ -1,7 +1,6 @@
 import StickyNav from './components/StickyNav';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import BaratecHero from './sections/BaratecHero';
-import TrustStrip from './sections/TrustStrip';
 import ApplicationsSection from './sections/ApplicationsSection';
 import CasosRealesSection from './sections/CasosRealesSection';
 import ProductCarousel from './sections/ProductCarousel';
@@ -24,7 +23,6 @@ export default function App() {
       <ProductCarousel />
       <VideoCallout />
       <CasosRealesSection />
-      <TrustStrip />
       <ContactSection />
       <WhatsAppFloat />
     </main>

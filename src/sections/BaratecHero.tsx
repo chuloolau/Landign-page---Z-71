@@ -77,7 +77,7 @@ export default function BaratecHero() {
         {/* Columna derecha — imagen Silverado con parallax */}
         <div className="relative w-full h-[55vh] lg:h-auto overflow-hidden bg-bg">
           <motion.img
-            src="/2026-slld-ext-gal-20.avif"
+            src="/hero-silverado-barro.jpeg"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"

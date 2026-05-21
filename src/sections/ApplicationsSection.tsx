@@ -2,18 +2,27 @@ import { ArrowUpRight } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import ParallaxBlock from '../components/ParallaxBlock';
 
-const applications = [
+type Application = {
+  title: string;
+  image: string;
+  /** Inline object-position para corregir el encuadre por imagen */
+  objectPosition?: string;
+};
+
+const applications: Application[] = [
   {
-    title: 'Off road',
-    image: '/2026-slld-tow-03-v2.avif',
+    title: 'Pickup 4×4',
+    image: '/silverado-zr2-azul.jpg',
+    // Desplazado a la izquierda para sacar el logo Chevy del frame visible
+    objectPosition: '15% 50%',
   },
   {
     title: 'Campo',
     image: '/2026-slld-ext-gal-05.avif',
   },
   {
-    title: 'Pickup 4×4',
-    image: '/chevrolet-silverado-z71-trail-boss-delantera-1.jpg',
+    title: 'Off road',
+    image: '/2026-slld-tow-03-v2.avif',
   },
 ];
 
@@ -23,7 +32,41 @@ export default function ApplicationsSection() {
       id="aplicaciones"
       className="relative px-6 md:px-12 py-24 md:py-32 bg-white overflow-hidden"
     >
-      <ParallaxBlock className="max-w-[1600px] mx-auto" range={50}>
+      {/* Background image — amortiguadores que sangran detrás del título y cards
+          (efecto FOX "DEFINE YOUR STYLE" adaptado a fondo blanco) */}
+      <div className="absolute inset-0 pointer-events-none">
+        <img
+          src="/amortiguadores-bg.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            // Aparece centrado vertical, anchurado al fondo. Saturación leve
+            // y mix-blend para que se integre con el blanco
+            objectPosition: '50% 55%',
+            opacity: 0.55,
+          }}
+        />
+        {/* Capa de difuminado top + bottom: el fondo se desvanece hacia los
+            extremos para no competir con el título arriba y las cards abajo */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.65) 18%, rgba(255,255,255,0.20) 38%, rgba(255,255,255,0.20) 62%, rgba(255,255,255,0.75) 82%, rgba(255,255,255,1) 100%)',
+          }}
+        />
+        {/* Sutil tinte lima a la derecha (acento de marca) */}
+        <div
+          className="absolute inset-0 opacity-50"
+          style={{
+            background:
+              'radial-gradient(circle at 85% 50%, rgba(221,226,39,0.10) 0%, rgba(255,255,255,0) 45%)',
+          }}
+        />
+      </div>
+
+      <ParallaxBlock className="relative z-10 max-w-[1600px] mx-auto" range={50}>
         {/* Título principal estilo FOX "DEFINE YOUR STYLE" */}
         <FadeIn>
           <h2
@@ -46,6 +89,11 @@ export default function ApplicationsSection() {
                   alt={app.title}
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
+                  style={
+                    app.objectPosition
+                      ? { objectPosition: app.objectPosition }
+                      : undefined
+                  }
                 />
                 <div
                   className="absolute inset-0 pointer-events-none transition-opacity duration-500"

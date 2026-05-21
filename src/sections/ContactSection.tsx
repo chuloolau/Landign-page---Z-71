@@ -1,36 +1,14 @@
-import { ArrowUpRight, Clock, ShieldCheck, MessageCircle } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import ParallaxBlock from '../components/ParallaxBlock';
-import WhatsAppIcon from '../components/WhatsAppIcon';
 
 const WHATSAPP_HREF =
   'https://wa.me/5493571623675?text=' +
   encodeURIComponent(
     'Hola, quiero cotizar un kit Baratec para Silverado Z-71.',
   );
-
-const trustItems = [
-  { icon: Clock, label: 'Respondemos en el día' },
-  { icon: ShieldCheck, label: 'Sin compromiso' },
-  { icon: MessageCircle, label: 'Asesoría técnica' },
-];
-
-const secondaryChannels = [
-  {
-    icon: '/logo-gmail.png',
-    iconPad: '7px',
-    label: 'Email',
-    value: 'baratec@baratec.com',
-    href: 'mailto:baratec@baratec.com',
-  },
-  {
-    icon: '/logo-maps.png',
-    iconPad: '6px',
-    label: 'Fábrica',
-    value: 'Calle Córdoba 115, Almafuerte — Córdoba',
-    href: 'https://maps.google.com/?q=Calle+Cordoba+115+Almafuerte+Cordoba+Argentina',
-  },
-];
+const SHOP_URL =
+  'https://baratecamortiguadores.mitiendanube.com/productos/kitx4-amortiguadores-baratec-s10-2012-high-performance-copia/';
 
 export default function ContactSection() {
   return (
@@ -39,12 +17,12 @@ export default function ContactSection() {
       className="relative px-6 md:px-12 py-24 md:py-32 bg-white"
     >
       <ParallaxBlock className="max-w-7xl mx-auto" range={50}>
-        {/* Header — eyebrow + título centrado */}
+        {/* Header centrado */}
         <FadeIn>
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="h-px w-10 bg-ink/30" />
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-ink/55">
-              Contacto
+              Llev&aacute; tu Z-71
             </span>
             <div className="h-px w-10 bg-ink/30" />
           </div>
@@ -55,226 +33,153 @@ export default function ContactSection() {
             className="font-display font-black uppercase leading-[0.92] tracking-[-0.02em] text-ink text-center max-w-4xl mx-auto"
             style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)' }}
           >
-            Pedí tu <span className="accent-gradient">cotización.</span>
+            Ped&iacute; tu <span className="accent-gradient">kit.</span>
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.2}>
-          <p className="text-ink/65 leading-relaxed text-base md:text-lg max-w-2xl mx-auto mt-7 text-center">
-            Contanos qué auto manejás, en qué disciplina lo usás y qué buscás
-            resolver. Te respondemos con la propuesta técnica y el presupuesto
-            a medida.
+          <p className="text-ink/65 leading-relaxed text-base md:text-lg max-w-xl mx-auto mt-6 text-center">
+            Compr&aacute; directo en la tienda online o cotiz&aacute; por
+            WhatsApp con asesor&iacute;a t&eacute;cnica.
           </p>
         </FadeIn>
 
-        {/* Trust chips — refuerzan confianza para que pidan presupuesto */}
-        <FadeIn delay={0.3}>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            {trustItems.map((t) => {
-              const Icon = t.icon;
-              return (
-                <div
-                  key={t.label}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+        {/* 2 acciones primarias side-by-side */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          {/* Card 1 — Tienda online */}
+          <FadeIn delay={0.3}>
+            <a
+              href={SHOP_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="group relative block rounded-3xl overflow-hidden h-full flex flex-col transition-all duration-500 hover:-translate-y-1"
+              style={{
+                backgroundColor: '#0A0A0B',
+                border: '1px solid rgba(255,255,255,0.10)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow =
+                  '0 28px 60px -16px rgba(221,226,39,0.25)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '';
+              }}
+            >
+              <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden flex-shrink-0">
+                <img
+                  src="/tablet-tienda.jpg"
+                  alt="Tienda online Baratec en tablet"
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+                />
+              </div>
+              <div className="relative p-6 sm:p-8 flex flex-col flex-1">
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55 mb-2">
+                  Tienda online
+                </div>
+                <div className="font-display font-bold text-white tracking-tight text-2xl sm:text-3xl leading-tight mb-3">
+                  Compr&aacute; tu kit
+                </div>
+                <div className="text-white/65 text-sm leading-snug mb-6">
+                  Cat&aacute;logo completo, pago seguro y env&iacute;o a todo
+                  el pa&iacute;s.
+                </div>
+                <div className="mt-auto inline-flex items-center gap-2 self-start rounded-full font-bold uppercase tracking-[0.18em] px-6 py-3 text-[11px] sm:text-xs transition-all duration-300 bg-accent group-hover:bg-accent-hover group-hover:scale-[1.03] text-ink cta-primary"
                   style={{
-                    backgroundColor: '#DDE227',
-                    border: '1px solid rgba(10,10,11,0.10)',
                     boxShadow:
-                      '0 1px 0 0 rgba(255,255,255,0.35) inset, 0 4px 12px -4px rgba(221,226,39,0.45)',
+                      '0 1px 0 0 rgba(255,255,255,0.35) inset, 0 12px 32px -8px rgba(221,226,39,0.45)',
                   }}
                 >
-                  <Icon
-                    size={14}
-                    strokeWidth={2}
-                    style={{ color: '#0A0A0B' }}
-                  />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink font-semibold">
-                    {t.label}
-                  </span>
+                  Comprar online
+                  <ArrowUpRight size={14} strokeWidth={2.5} />
                 </div>
-              );
-            })}
-          </div>
-        </FadeIn>
+              </div>
+            </a>
+          </FadeIn>
 
-        {/* CTA primario — WhatsApp gigante, claro y dominante */}
-        <FadeIn delay={0.4}>
-          <div className="mt-12 sm:mt-14 max-w-3xl mx-auto">
+          {/* Card 2 — WhatsApp directo */}
+          <FadeIn delay={0.4}>
             <a
               href={WHATSAPP_HREF}
               target="_blank"
               rel="noreferrer noopener"
-              className="group relative flex items-center justify-between gap-4 sm:gap-6 p-5 sm:p-7 rounded-3xl transition-all hover:-translate-y-1"
+              className="group relative block rounded-3xl overflow-hidden h-full flex flex-col transition-all duration-500 hover:-translate-y-1"
               style={{
                 backgroundColor: '#0A0A0B',
-                border: '1px solid rgba(255,255,255,0.08)',
-                boxShadow:
-                  '0 1px 0 0 rgba(255,255,255,0.06) inset, 0 28px 60px -16px rgba(0,0,0,0.5)',
+                border: '1px solid rgba(255,255,255,0.10)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow =
+                  '0 28px 60px -16px rgba(221,226,39,0.25)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '';
               }}
             >
-              <div
-                className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden flex-shrink-0 transition-transform group-hover:scale-105"
-                style={{ backgroundColor: '#DDE227' }}
-              >
+              <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden flex-shrink-0" style={{ backgroundColor: '#0A0A0B' }}>
                 <video
-                  src="/efecto-conversacion.mp4"
+                  src="/hero-rotaviva.mp4"
                   autoPlay
                   muted
                   loop
                   playsInline
                   preload="auto"
-                  className="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-90"
+                  className="absolute inset-0 w-full h-full object-cover opacity-80"
+                />
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      'linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)',
+                  }}
                 />
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-white/55 mb-1">
-                  WhatsApp · Respuesta directa
+              <div className="relative p-6 sm:p-8 flex flex-col flex-1">
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55 mb-2">
+                  WhatsApp &middot; Asesor&iacute;a directa
                 </div>
-                <div className="font-display font-bold text-white text-xl sm:text-2xl md:text-3xl leading-tight">
-                  Escribir y cotizar
+                <div className="font-display font-bold text-white tracking-tight text-2xl sm:text-3xl leading-tight mb-3">
+                  Cotiz&aacute; con un asesor
+                </div>
+                <div className="text-white/65 text-sm leading-snug mb-6">
+                  Respuesta en el d&iacute;a. Sin compromiso. Te armamos el
+                  setup a medida.
+                </div>
+                <div
+                  className="mt-auto inline-flex items-center gap-2 self-start rounded-full font-bold uppercase tracking-[0.18em] px-6 py-3 text-[11px] sm:text-xs transition-all duration-300 bg-accent group-hover:bg-accent-hover group-hover:scale-[1.03] text-ink cta-primary"
+                  style={{
+                    boxShadow:
+                      '0 1px 0 0 rgba(255,255,255,0.35) inset, 0 12px 32px -8px rgba(221,226,39,0.55)',
+                  }}
+                >
+                  Escribir por WhatsApp
+                  <ArrowUpRight size={14} strokeWidth={2.5} />
                 </div>
               </div>
-              <span
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110"
-                style={{
-                  backgroundColor: '#25D366',
-                  boxShadow: '0 4px 16px -2px rgba(37,211,102,0.45)',
-                }}
-              >
-                <WhatsAppIcon size={22} color="#FFFFFF" />
-              </span>
+            </a>
+          </FadeIn>
+        </div>
+
+        {/* Info secundaria minimalista */}
+        <FadeIn delay={0.5}>
+          <div className="mt-12 sm:mt-14 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-center">
+            <a
+              href="mailto:baratec@baratec.com"
+              className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/55 hover:text-ink transition-colors"
+            >
+              baratec@baratec.com
+            </a>
+            <span className="hidden sm:inline text-ink/20">&middot;</span>
+            <a
+              href="https://maps.google.com/?q=Calle+Cordoba+115+Almafuerte+Cordoba+Argentina"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/55 hover:text-ink transition-colors"
+            >
+              Almafuerte, C&oacute;rdoba
             </a>
           </div>
         </FadeIn>
-
-        {/* Canales secundarios + stat — grilla 3 columnas */}
-        <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-          {/* Email */}
-          <FadeIn delay={0.5}>
-            <a
-              href={secondaryChannels[0].href}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="group flex items-start gap-4 p-5 sm:p-6 rounded-2xl h-full transition-all hover:-translate-y-0.5"
-              style={{
-                backgroundColor: '#0A0A0B',
-                border: '1px solid rgba(255,255,255,0.08)',
-                boxShadow: '0 1px 0 0 rgba(255,255,255,0.04) inset',
-              }}
-            >
-              <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105 overflow-hidden"
-                style={{
-                  background: '#FFFFFF',
-                  padding: secondaryChannels[0].iconPad,
-                }}
-              >
-                <img
-                  src={secondaryChannels[0].icon}
-                  alt=""
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55 mb-1.5">
-                  {secondaryChannels[0].label}
-                </div>
-                <div className="text-white font-medium text-base leading-snug break-words">
-                  {secondaryChannels[0].value}
-                </div>
-              </div>
-              <ArrowUpRight
-                size={18}
-                className="text-white/55 group-hover:text-white transition-colors flex-shrink-0 mt-1"
-              />
-            </a>
-          </FadeIn>
-
-          {/* Fábrica */}
-          <FadeIn delay={0.6}>
-            <a
-              href={secondaryChannels[1].href}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="group flex items-start gap-4 p-5 sm:p-6 rounded-2xl h-full transition-all hover:-translate-y-0.5"
-              style={{
-                backgroundColor: '#0A0A0B',
-                border: '1px solid rgba(255,255,255,0.08)',
-                boxShadow: '0 1px 0 0 rgba(255,255,255,0.04) inset',
-              }}
-            >
-              <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105 overflow-hidden"
-                style={{
-                  background: '#FFFFFF',
-                  padding: secondaryChannels[1].iconPad,
-                }}
-              >
-                <img
-                  src={secondaryChannels[1].icon}
-                  alt=""
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55 mb-1.5">
-                  {secondaryChannels[1].label}
-                </div>
-                <div className="text-white font-medium text-base leading-snug break-words">
-                  {secondaryChannels[1].value}
-                </div>
-              </div>
-              <ArrowUpRight
-                size={18}
-                className="text-white/55 group-hover:text-white transition-colors flex-shrink-0 mt-1"
-              />
-            </a>
-          </FadeIn>
-
-          {/* Stat — +10 años Fabricando en Argentina */}
-          <FadeIn delay={0.7}>
-            <article
-              className="relative overflow-hidden rounded-2xl h-full min-h-[140px] flex flex-col justify-between p-5 sm:p-6"
-              style={{
-                backgroundColor: '#0A0A0B',
-                border: '1px solid rgba(221,226,39,0.45)',
-                boxShadow:
-                  '0 1px 0 0 rgba(255,255,255,0.08) inset, 0 0 0 1px rgba(221,226,39,0.15), 0 18px 40px -12px rgba(221,226,39,0.30)',
-              }}
-            >
-              <video
-                src="/hero-rotaviva.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                className="absolute inset-0 w-full h-full object-cover opacity-55"
-              />
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    'linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%)',
-                }}
-              />
-              <div className="relative z-10 flex items-baseline gap-2">
-                <span
-                  className="font-display font-bold text-white text-4xl sm:text-5xl tracking-[-0.04em] leading-none"
-                  style={{ filter: 'drop-shadow(0 2px 12px rgba(0,0,0,0.5))' }}
-                >
-                  +10
-                </span>
-                <span className="font-display font-bold accent-gradient text-2xl sm:text-3xl tracking-[-0.03em] leading-none">
-                  años
-                </span>
-              </div>
-              <div className="relative z-10 font-mono text-[10px] uppercase tracking-[0.3em] text-white/75 mt-3">
-                Fabricando en Argentina
-              </div>
-            </article>
-          </FadeIn>
-        </div>
       </ParallaxBlock>
 
       <footer
@@ -285,8 +190,8 @@ export default function ContactSection() {
           Baratec
         </div>
         <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/40">
-          © {new Date().getFullYear()} · Efrom Technology SA · Almafuerte,
-          Córdoba — Argentina
+          &copy; {new Date().getFullYear()} &middot; Efrom Technology SA
+          &middot; Almafuerte, C&oacute;rdoba &mdash; Argentina
         </div>
       </footer>
     </section>
