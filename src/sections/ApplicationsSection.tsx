@@ -11,7 +11,7 @@ type Application = {
 
 const applications: Application[] = [
   {
-    title: 'Pickup 4×4',
+    title: 'Pick-up',
     image: '/silverado-zr2-azul.jpg',
     // Desplazado a la izquierda para sacar el logo Chevy del frame visible
     objectPosition: '15% 50%',

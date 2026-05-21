@@ -31,7 +31,13 @@ export default function BaratecHero() {
         </a>
         <div className="hidden md:flex items-center gap-1 sm:gap-2">
           <a
-            href="#producto"
+            href="#aplicaciones"
+            className="nav-link-fox"
+          >
+            Desarrollo
+          </a>
+          <a
+            href="#productos"
             className="nav-link-fox"
           >
             Producto
@@ -40,13 +46,7 @@ export default function BaratecHero() {
             href="#casos"
             className="nav-link-fox"
           >
-            Casos
-          </a>
-          <a
-            href="#aplicaciones"
-            className="nav-link-fox"
-          >
-            Aplicaciones
+            Instalación
           </a>
         </div>
       </nav>
@@ -63,12 +63,12 @@ export default function BaratecHero() {
               className="font-display font-black uppercase leading-[0.95] tracking-[-0.01em] text-ink text-left select-none break-words"
               style={{ fontSize: 'clamp(2rem, 6.5vw, 6.5rem)' }}
             >
-              <span className="block">SILVERADO</span>
               <span className="block">Z-71</span>
-              <span className="accent-gradient block">
+              <span className="accent-gradient block">SILVERADO</span>
+              <span className="block">
                 CAMBIA TU MANERA
                 <br />
-                DE ANDAR
+                <span className="accent-gradient">DE ANDAR</span>
               </span>
             </h1>
           </FadeIn>

@@ -29,9 +29,12 @@ body,
   letter-spacing: -0.03em;
 }
 
+/* Antes: ui-monospace. Cambiado a la misma familia sans-serif del body
+   para que eyebrows, labels y footer mantengan coherencia con la marca. */
 .font-mono {
-  font-family: ui-monospace, 'SF Mono', 'Menlo', 'Monaco', 'Consolas',
-    'Liberation Mono', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    'SF Pro Display', 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
 }
 
 /* Headline gradient: dark → muted gray */

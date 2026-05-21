@@ -11,7 +11,7 @@ const PRODUCTS: Product[] = [
   {
     image: '/kit-completo.jpg',
     title: 'Baratec High Performance',
-    subtitle: 'Kit completo · Z-71 2025',
+    subtitle: 'Kit completo',
   },
   {
     image: '/delanteros.jpg',
@@ -27,7 +27,10 @@ const PRODUCTS: Product[] = [
 
 export default function ProductCarousel() {
   return (
-    <section className="relative px-6 md:px-12 py-16 md:py-24 bg-bg">
+    <section
+      id="productos"
+      className="relative px-6 md:px-12 py-16 md:py-24 bg-bg"
+    >
       <ParallaxBlock className="max-w-7xl mx-auto" range={50}>
         <div className="mb-10 sm:mb-14 flex flex-col items-start text-left">
           <FadeIn>
@@ -45,7 +48,7 @@ export default function ProductCarousel() {
             >
               Nuevo
               <br />
-              <span className="accent-gradient">desarrollo.</span>
+              <span className="accent-gradient">desarrollo Z-71</span>
             </h2>
           </FadeIn>
         </div>
@@ -74,7 +77,7 @@ export default function ProductCarousel() {
                   src={p.image}
                   alt={p.title}
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-contain p-6 transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-contain p-3 sm:p-4 transition-transform duration-[1.4s] ease-out group-hover:scale-105"
                 />
                 <div className="absolute bottom-5 left-5 right-5 transition-transform duration-500 group-hover:-translate-y-1">
                   <div className="font-display font-bold text-ink tracking-tight text-lg sm:text-xl mb-1">

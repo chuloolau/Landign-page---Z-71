@@ -35,7 +35,7 @@ export default function VideoCallout() {
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-10 bg-ink/30" />
               <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-ink/55">
-                Tecnología
+                Amortiguador
               </span>
             </div>
           </FadeIn>
@@ -45,19 +45,20 @@ export default function VideoCallout() {
               className="font-display font-black uppercase leading-[0.88] tracking-[-0.01em] text-ink select-none"
               style={{ fontSize: 'clamp(2.25rem, 6vw, 6rem)' }}
             >
-              <span className="block">Válvula</span>
-              <span className="accent-gradient block">progresiva.</span>
+              <span className="block">Monotubo</span>
+              <span className="accent-gradient block">presurizado</span>
               <span className="block">Reservorio</span>
-              <span className="block">externo.</span>
+              <span className="block">Nitr&oacute;geno</span>
+              <span className="accent-gradient block">Externo</span>
             </h2>
           </FadeIn>
 
           <FadeIn delay={0.25}>
             <p className="mt-7 text-ink/65 leading-relaxed text-base md:text-lg max-w-xl">
-              Sistema de doble cámara con nitrógeno presurizado y aceite
-              específico de competición. La válvula progresiva ajusta la
-              resistencia según el impacto: confortable en lo liso, firme en
-              lo extremo.
+              Amortiguador Monotubo Presurizado con Reservorio Independiente.
+              Cuerpo de acero de 55&nbsp;mm, v&aacute;lvula sinterizada de
+              50&nbsp;mm y piezas de aluminio anodizado. Ofrece regulaci&oacute;n
+              de altura de porta espiral.
             </p>
           </FadeIn>
 

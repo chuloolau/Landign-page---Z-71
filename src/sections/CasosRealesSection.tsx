@@ -5,20 +5,17 @@ const cases = [
   {
     src: '/silverado-azul.mp4',
     label: 'Z-71 Azul',
-    description:
-      'Kit Baratec instalado y entregado. Suspensión a punto para uso diario y campo.',
+    description: 'Control de recorrido.',
   },
   {
     src: '/silverado-gris.mp4',
     label: 'Z-71 Gris',
-    description:
-      'Probada en caminos rotos: el kit aguanta tierra, polvo y kilómetros reales.',
+    description: 'Estabilidad en alta y baja velocidad.',
   },
   {
     src: '/silverado-roja.mp4',
     label: 'Z-71 Roja',
-    description:
-      'Kit completo delantero + trasero. Cada unidad matchada al modelo y con número de serie.',
+    description: 'Mayor adherencia en condiciones adversas.',
   },
 ];
 
@@ -45,16 +42,17 @@ export default function CasosRealesSection() {
                 className="font-display font-bold leading-[0.95] tracking-[-0.03em] text-ink"
                 style={{ fontSize: 'clamp(2rem, 5.5vw, 4.5rem)' }}
               >
-                Instalado.<br />
-                <span className="accent-gradient">Funcionando.</span>
+                Instalaci&oacute;n<br />
+                <span className="accent-gradient">Oficial</span>
               </h2>
             </FadeIn>
           </div>
           <FadeIn delay={0.2}>
             <p className="text-ink/60 max-w-md text-base leading-relaxed">
-              No son renders. Son clientes reales saliendo del taller con el
-              kit Baratec puesto y volviendo del campo después de kilómetros
-              de uso intensivo.
+              La configuraci&oacute;n de nuestros amortiguadores ha sido
+              meticulosamente dise&ntilde;ada para mejorar la seguridad,
+              potenciar el rendimiento y optimizar la experiencia de
+              conducci&oacute;n del veh&iacute;culo.
             </p>
           </FadeIn>
         </div>
@@ -63,18 +61,16 @@ export default function CasosRealesSection() {
           {cases.map((c, i) => (
             <FadeIn key={c.src} delay={i * 0.1}>
               <article
-                className="relative rounded-2xl overflow-hidden bg-black aspect-[9/16] group cursor-pointer transition-all duration-500 hover:-translate-y-1"
+                className="relative rounded-2xl overflow-hidden aspect-[9/16] group cursor-pointer transition-all duration-500 hover:-translate-y-1"
                 style={{
-                  border: '1px solid rgba(10,10,11,0.08)',
+                  backgroundColor: '#F2F2EF',
                   boxShadow: '0 1px 0 0 rgba(10,10,11,0.03)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(221,226,39,0.6)';
                   e.currentTarget.style.boxShadow =
-                    '0 18px 40px -16px rgba(10,10,11,0.4), 0 0 0 1px rgba(221,226,39,0.25)';
+                    '0 18px 40px -16px rgba(10,10,11,0.25), 0 0 0 1px rgba(221,226,39,0.35)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(10,10,11,0.08)';
                   e.currentTarget.style.boxShadow =
                     '0 1px 0 0 rgba(10,10,11,0.03)';
                 }}
@@ -85,7 +81,11 @@ export default function CasosRealesSection() {
                   loop
                   playsInline
                   preload="auto"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
+                  style={{
+                    transform: 'scale(1.05)',
+                    transformOrigin: 'center',
+                  }}
                   src={c.src}
                 />
                 <div
@@ -102,16 +102,6 @@ export default function CasosRealesSection() {
                       'radial-gradient(circle at 50% 100%, rgba(221,226,39,0.2) 0%, rgba(0,0,0,0) 55%)',
                   }}
                 />
-                {c.label ? (
-                  <div className="absolute top-4 left-4 transition-transform duration-300 group-hover:-translate-y-0.5">
-                    <span
-                      className="font-mono text-[10px] uppercase tracking-[0.25em] font-medium px-3 py-1.5 rounded-full"
-                      style={{ background: '#DDE227', color: '#0A0A0B' }}
-                    >
-                      {c.label}
-                    </span>
-                  </div>
-                ) : null}
                 <div className="absolute bottom-5 left-5 right-5 transition-transform duration-500 ease-out group-hover:-translate-y-1">
                   <p className="text-white/90 leading-snug text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
                     {c.description}

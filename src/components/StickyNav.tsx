@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import CTAButton from './CTAButton';
 
 const navLinks = [
-  { label: 'Producto', href: '#producto' },
-  { label: 'Casos', href: '#casos' },
-  { label: 'Aplicaciones', href: '#aplicaciones' },
+  { label: 'Desarrollo', href: '#aplicaciones' },
+  { label: 'Producto', href: '#productos' },
+  { label: 'Instalación', href: '#casos' },
 ];
 
 const WHATSAPP_HREF =
