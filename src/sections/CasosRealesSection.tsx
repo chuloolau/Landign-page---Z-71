@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import FadeIn from '../components/FadeIn';
 import ParallaxBlock from '../components/ParallaxBlock';
 
@@ -19,20 +20,66 @@ const cases = [
   },
 ];
 
+function LazyVideo({ src, label }: { src: string; label: string }) {
+  const ref = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const playPromise = el.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(() => {
+                /* autoplay rechazado */
+              });
+            }
+          } else {
+            el.pause();
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={`Video del ${label} con kit Baratec instalado`}
+      className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
+      style={{
+        transform: 'scale(1.05)',
+        transformOrigin: 'center',
+      }}
+      src={src}
+    />
+  );
+}
+
 export default function CasosRealesSection() {
   return (
     <section
       id="casos"
-      className="relative px-6 md:px-12 py-24 md:py-32"
+      className="relative px-4 sm:px-6 md:px-12 py-20 sm:py-24 md:py-32"
       style={{ backgroundColor: '#F2F2EF' }}
     >
       <ParallaxBlock className="max-w-7xl mx-auto" range={50}>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 sm:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-16 md:mb-20">
           <div>
             <FadeIn>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-px w-10 bg-ink/30" />
-                <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-ink/55">
+              <div className="flex items-center gap-3 mb-5 sm:mb-6">
+                <div className="h-px w-8 sm:w-10 bg-ink/30" />
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-ink/55">
                   Casos reales
                 </span>
               </div>
@@ -40,15 +87,16 @@ export default function CasosRealesSection() {
             <FadeIn delay={0.1}>
               <h2
                 className="font-display font-bold leading-[0.95] tracking-[-0.03em] text-ink"
-                style={{ fontSize: 'clamp(2rem, 5.5vw, 4.5rem)' }}
+                style={{ fontSize: 'clamp(1.875rem, 6vw, 4.5rem)' }}
               >
-                Instalaci&oacute;n<br />
+                Instalaci&oacute;n
+                <br />
                 <span className="accent-gradient">Oficial</span>
               </h2>
             </FadeIn>
           </div>
           <FadeIn delay={0.2}>
-            <p className="text-ink/60 max-w-md text-base leading-relaxed">
+            <p className="text-ink/60 max-w-md text-sm sm:text-base leading-relaxed">
               La configuraci&oacute;n de nuestros amortiguadores ha sido
               meticulosamente dise&ntilde;ada para mejorar la seguridad,
               potenciar el rendimiento y optimizar la experiencia de
@@ -61,7 +109,7 @@ export default function CasosRealesSection() {
           {cases.map((c, i) => (
             <FadeIn key={c.src} delay={i * 0.1}>
               <article
-                className="relative rounded-2xl overflow-hidden aspect-[9/16] group cursor-pointer transition-all duration-500 hover:-translate-y-1"
+                className="relative rounded-2xl overflow-hidden aspect-[3/4] sm:aspect-[9/16] group cursor-pointer transition-all duration-500 hover:-translate-y-1"
                 style={{
                   backgroundColor: '#F2F2EF',
                   boxShadow: '0 1px 0 0 rgba(10,10,11,0.03)',
@@ -75,19 +123,7 @@ export default function CasosRealesSection() {
                     '0 1px 0 0 rgba(10,10,11,0.03)';
                 }}
               >
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
-                  style={{
-                    transform: 'scale(1.05)',
-                    transformOrigin: 'center',
-                  }}
-                  src={c.src}
-                />
+                <LazyVideo src={c.src} label={c.label} />
                 <div
                   className="absolute inset-0 pointer-events-none transition-opacity duration-500 group-hover:opacity-90"
                   style={{
@@ -102,8 +138,16 @@ export default function CasosRealesSection() {
                       'radial-gradient(circle at 50% 100%, rgba(221,226,39,0.2) 0%, rgba(0,0,0,0) 55%)',
                   }}
                 />
-                <div className="absolute bottom-5 left-5 right-5 transition-transform duration-500 ease-out group-hover:-translate-y-1">
-                  <p className="text-white/90 leading-snug text-sm sm:text-base transition-colors duration-300 group-hover:text-white">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <span
+                    className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] font-medium px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full"
+                    style={{ background: '#DDE227', color: '#0A0A0B' }}
+                  >
+                    {c.label}
+                  </span>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                  <p className="text-white/90 leading-snug text-xs sm:text-sm md:text-base transition-colors duration-300 group-hover:text-white">
                     {c.description}
                   </p>
                 </div>

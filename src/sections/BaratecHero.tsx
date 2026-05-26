@@ -1,13 +1,30 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import FadeIn from '../components/FadeIn';
+import MobileMenu from '../components/MobileMenu';
+
+const WHATSAPP_HREF =
+  'https://wa.me/5493571623675?text=' +
+  encodeURIComponent('Hola, quiero cotizar un kit Baratec.');
+
+const NAV_LINKS = [
+  { label: 'Desarrollo', href: '#aplicaciones' },
+  { label: 'Producto', href: '#productos' },
+  { label: 'Instalación', href: '#casos' },
+];
 
 export default function BaratecHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
-  // Parallax: imagen baja con las letras estilo FOX. La imagen se desplaza
-  // bastante hacia abajo creando profundidad. El contenido baja un poco y
-  // mantiene opacidad full (no se desvanece).
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
@@ -19,10 +36,10 @@ export default function BaratecHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col w-full overflow-hidden bg-white"
+      className="relative min-h-[100svh] flex flex-col w-full overflow-hidden bg-white"
     >
-      <nav className="relative z-20 flex items-center justify-between px-6 md:px-12 pt-6 md:pt-8">
-        <a href="#" className="flex items-center" aria-label="Baratec">
+      <nav className="relative z-20 flex items-center justify-between px-4 sm:px-6 md:px-12 pt-5 sm:pt-6 md:pt-8 gap-3">
+        <a href="#" className="flex items-center" aria-label="Baratec — Inicio">
           <img
             src="/logo-b.png"
             alt="Baratec"
@@ -30,38 +47,24 @@ export default function BaratecHero() {
           />
         </a>
         <div className="hidden md:flex items-center gap-1 sm:gap-2">
-          <a
-            href="#aplicaciones"
-            className="nav-link-fox"
-          >
-            Desarrollo
-          </a>
-          <a
-            href="#productos"
-            className="nav-link-fox"
-          >
-            Producto
-          </a>
-          <a
-            href="#casos"
-            className="nav-link-fox"
-          >
-            Instalación
-          </a>
+          {NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href} className="nav-link-fox">
+              {link.label}
+            </a>
+          ))}
         </div>
+        <MobileMenu links={NAV_LINKS} ctaHref={WHATSAPP_HREF} />
       </nav>
 
-      {/* Split layout estilo FOX: texto izquierda (bg blanco) + imagen derecha */}
       <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] w-full">
-        {/* Columna izquierda — texto sobre fondo blanco */}
         <motion.div
-          style={{ y: contentY }}
-          className="relative flex flex-col items-start justify-center px-6 md:px-12 lg:px-16 py-16 lg:py-0 bg-white"
+          style={reducedMotion ? undefined : { y: contentY }}
+          className="relative flex flex-col items-start justify-center px-4 sm:px-6 md:px-12 lg:px-16 py-10 sm:py-16 lg:py-0 bg-white"
         >
           <FadeIn delay={0.25} y={40}>
             <h1
               className="font-display font-black uppercase leading-[0.95] tracking-[-0.01em] text-ink text-left select-none break-words"
-              style={{ fontSize: 'clamp(2rem, 6.5vw, 6.5rem)' }}
+              style={{ fontSize: 'clamp(1.875rem, 7vw, 6.5rem)' }}
             >
               <span className="block">Z-71</span>
               <span className="accent-gradient block">SILVERADO</span>
@@ -74,18 +77,24 @@ export default function BaratecHero() {
           </FadeIn>
         </motion.div>
 
-        {/* Columna derecha — imagen Silverado con parallax */}
-        <div className="relative w-full h-[55vh] lg:h-auto overflow-hidden bg-bg">
+        <div className="relative w-full h-[50vh] sm:h-[55vh] lg:h-auto overflow-hidden bg-bg">
           <motion.img
             src="/hero-silverado-barro.jpeg"
             alt=""
             aria-hidden="true"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover"
-            style={{
-              objectPosition: '50% 50%',
-              y: imageY,
-              scale: imageScale,
-            }}
+            style={
+              reducedMotion
+                ? { objectPosition: '50% 50%' }
+                : {
+                    objectPosition: '50% 50%',
+                    y: imageY,
+                    scale: imageScale,
+                  }
+            }
           />
           <div
             className="absolute inset-0 pointer-events-none"
@@ -96,7 +105,6 @@ export default function BaratecHero() {
           />
         </div>
       </div>
-
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CTAButton from './CTAButton';
+import MobileMenu from './MobileMenu';
 
 const navLinks = [
   { label: 'Desarrollo', href: '#aplicaciones' },
@@ -50,12 +51,12 @@ export default function StickyNav() {
           borderBottom: '1px solid rgba(10,10,11,0.08)',
         }}
       >
-        <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 h-20">
-          <a href="#" className="flex items-center" aria-label="Baratec">
+        <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-12 h-16 sm:h-20">
+          <a href="#" className="flex items-center" aria-label="Baratec — Inicio">
             <img
               src="/logo-b.png"
               alt="Baratec"
-              className="h-9 sm:h-10 w-auto"
+              className="h-8 sm:h-9 md:h-10 w-auto"
             />
           </a>
           <div className="hidden md:flex items-center gap-8">
@@ -69,13 +70,18 @@ export default function StickyNav() {
               </a>
             ))}
           </div>
-          <CTAButton
-            href={WHATSAPP_HREF}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Cotizar
-          </CTAButton>
+          <div className="flex items-center gap-2">
+            <div className="hidden md:block">
+              <CTAButton
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Cotizar
+              </CTAButton>
+            </div>
+            <MobileMenu links={navLinks} ctaHref={WHATSAPP_HREF} />
+          </div>
         </nav>
       </div>
     </>

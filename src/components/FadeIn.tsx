@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
-import type { ReactNode, ElementType } from 'react';
+import type {
+  ReactNode,
+  ElementType,
+  ComponentType,
+  CSSProperties,
+} from 'react';
 
 type FadeInProps = {
   children: ReactNode;
@@ -9,8 +14,21 @@ type FadeInProps = {
   y?: number;
   as?: ElementType;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 };
+
+const motionCache = new Map<string, ComponentType<Record<string, unknown>>>();
+
+function getMotionComponent(as: ElementType): ComponentType<Record<string, unknown>> {
+  if (typeof as === 'string') {
+    const cached = motionCache.get(as);
+    if (cached) return cached;
+    const created = motion.create(as) as ComponentType<Record<string, unknown>>;
+    motionCache.set(as, created);
+    return created;
+  }
+  return motion.create(as) as ComponentType<Record<string, unknown>>;
+}
 
 export default function FadeIn({
   children,
@@ -22,7 +40,7 @@ export default function FadeIn({
   className,
   style,
 }: FadeInProps) {
-  const MotionComponent = motion.create(as);
+  const MotionComponent = getMotionComponent(as);
 
   return (
     <MotionComponent
@@ -30,7 +48,7 @@ export default function FadeIn({
       style={style}
       initial={{ opacity: 0, x, y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '50px', amount: 0 }}
+      viewport={{ once: true, margin: '0px 0px -10% 0px', amount: 0.1 }}
       transition={{
         delay,
         duration,

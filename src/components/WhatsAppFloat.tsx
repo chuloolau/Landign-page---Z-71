@@ -25,30 +25,26 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noreferrer noopener"
       aria-label="Escribir por WhatsApp"
-      className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-30 flex items-center justify-center w-14 h-14 sm:w-15 sm:h-15 rounded-full transition-all duration-500 hover:scale-110 ${
-        visible ? 'opacity-100 translate-y-0' : 'pointer-events-none opacity-0 translate-y-4'
+      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 flex items-center justify-center rounded-full transition-all duration-500 hover:scale-110 ${
+        visible
+          ? 'opacity-100 translate-y-0'
+          : 'pointer-events-none opacity-0 translate-y-4'
       }`}
       style={{
+        width: 'clamp(52px, 14vw, 60px)',
+        height: 'clamp(52px, 14vw, 60px)',
         backgroundColor: '#25D366',
         boxShadow:
           '0 10px 30px -6px rgba(37,211,102,0.5), 0 0 0 4px rgba(37,211,102,0.15)',
       }}
     >
-      <WhatsAppIcon size={28} color="#FFFFFF" />
+      <WhatsAppIcon size={26} color="#FFFFFF" />
       <span
         className="absolute inset-0 rounded-full pointer-events-none"
         style={{
-          boxShadow: '0 0 0 0 rgba(37,211,102,0.6)',
           animation: 'wa-pulse 2.4s ease-out infinite',
         }}
       />
-      <style>{`
-        @keyframes wa-pulse {
-          0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.55); }
-          70% { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
-          100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-        }
-      `}</style>
     </a>
   );
 }

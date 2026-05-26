@@ -23,7 +23,7 @@ export default function CTAButton({
         href={href}
         target={target}
         rel={rel}
-        className={`group inline-flex items-center justify-center rounded-full border border-ink/20 text-ink/80 font-medium uppercase tracking-[0.18em] px-7 py-3 sm:px-8 sm:py-3.5 text-[11px] sm:text-xs hover:border-ink/60 hover:text-ink transition-all duration-300 ${className}`}
+        className={`group inline-flex items-center justify-center rounded-full border border-ink/20 text-ink/80 font-medium uppercase tracking-[0.16em] sm:tracking-[0.18em] px-5 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 text-[10px] sm:text-[11px] md:text-xs hover:border-ink/60 hover:text-ink transition-all duration-300 ${className}`}
       >
         {children}
       </a>
@@ -34,7 +34,7 @@ export default function CTAButton({
       href={href}
       target={target}
       rel={rel}
-      className={`group relative inline-flex items-center justify-center rounded-full font-semibold uppercase tracking-[0.18em] px-7 py-3 sm:px-8 sm:py-3.5 text-[11px] sm:text-xs transition-all duration-300 bg-[#DDE227] hover:bg-[#FFFF33] hover:scale-[1.03] text-[#0A0A0B] cta-primary ${className}`}
+      className={`group relative inline-flex items-center justify-center rounded-full font-semibold uppercase tracking-[0.16em] sm:tracking-[0.18em] px-5 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 text-[10px] sm:text-[11px] md:text-xs transition-all duration-300 bg-[#DDE227] hover:bg-[#FFFF33] hover:scale-[1.03] text-[#0A0A0B] cta-primary ${className}`}
       style={{
         boxShadow:
           '0 1px 0 0 rgba(255,255,255,0.35) inset, 0 12px 32px -8px rgba(221,226,39,0.45)',

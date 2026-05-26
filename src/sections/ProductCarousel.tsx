@@ -29,14 +29,14 @@ export default function ProductCarousel() {
   return (
     <section
       id="productos"
-      className="relative px-6 md:px-12 py-16 md:py-24 bg-bg"
+      className="relative px-4 sm:px-6 md:px-12 py-14 sm:py-16 md:py-24 bg-bg"
     >
       <ParallaxBlock className="max-w-7xl mx-auto" range={50}>
-        <div className="mb-10 sm:mb-14 flex flex-col items-start text-left">
+        <div className="mb-8 sm:mb-12 md:mb-14 flex flex-col items-start text-left">
           <FadeIn>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="h-px w-10 bg-ink/30" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-ink/55">
+            <div className="flex items-center gap-3 mb-4 sm:mb-5">
+              <div className="h-px w-8 sm:w-10 bg-ink/30" />
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-ink/55">
                 Productos
               </span>
             </div>
@@ -44,7 +44,7 @@ export default function ProductCarousel() {
           <FadeIn delay={0.1}>
             <h2
               className="font-display font-bold leading-[0.95] tracking-[-0.03em] text-ink text-left"
-              style={{ fontSize: 'clamp(2rem, 5.5vw, 4.5rem)' }}
+              style={{ fontSize: 'clamp(1.875rem, 6vw, 4.5rem)' }}
             >
               Nuevo
               <br />
@@ -53,7 +53,7 @@ export default function ProductCarousel() {
           </FadeIn>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
           {PRODUCTS.map((p, i) => (
             <FadeIn key={p.title} delay={i * 0.08}>
               <article
@@ -75,15 +75,16 @@ export default function ProductCarousel() {
               >
                 <img
                   src={p.image}
-                  alt={p.title}
+                  alt={`${p.title} — ${p.subtitle}`}
                   loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-contain p-3 sm:p-4 transition-transform duration-[1.4s] ease-out group-hover:scale-105"
                 />
-                <div className="absolute bottom-5 left-5 right-5 transition-transform duration-500 group-hover:-translate-y-1">
-                  <div className="font-display font-bold text-ink tracking-tight text-lg sm:text-xl mb-1">
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 transition-transform duration-500 group-hover:-translate-y-1">
+                  <div className="font-display font-bold text-ink tracking-tight text-base sm:text-lg md:text-xl mb-1">
                     {p.title}
                   </div>
-                  <div className="text-ink/65 text-sm leading-snug">
+                  <div className="text-ink/65 text-xs sm:text-sm leading-snug">
                     {p.subtitle}
                   </div>
                 </div>
