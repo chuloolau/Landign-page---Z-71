@@ -20,3 +20,4 @@ _assets-fuente/
 # Backups de assets pesados que NO van al deploy
 *.original.mp4
 *-original-*.mp4
+public/_originals/

@@ -65,3 +65,6 @@ Thumbs.db
 # vite dev cache
 .vite/
 .vercel
+
+# backup local de videos originales (no van a git ni a deploy)
+public/_originals/
