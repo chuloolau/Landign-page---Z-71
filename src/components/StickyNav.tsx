@@ -16,15 +16,23 @@ export default function StickyNav() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Throttle con requestAnimationFrame: nunca más de 1 cálculo por frame.
+    // Crítico en mobile donde el scroll dispara muchos eventos por segundo.
+    let ticking = false;
     const onScroll = () => {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      setProgress(max > 0 ? window.scrollY / max : 0);
-      setVisible(window.scrollY > window.innerHeight * 0.6);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        setProgress(max > 0 ? window.scrollY / max : 0);
+        setVisible(window.scrollY > window.innerHeight * 0.6);
+        ticking = false;
+      });
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', onScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);

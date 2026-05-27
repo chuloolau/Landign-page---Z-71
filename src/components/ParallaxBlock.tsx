@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import type { ReactNode } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import useDeviceCapabilities from '../hooks/useDeviceCapabilities';
 
 type Props = {
   children: ReactNode;
@@ -14,10 +15,28 @@ type Props = {
 
 /**
  * Envoltorio que aplica un parallax suave: el contenido se desplaza en Y
- * a medida que entra y sale del viewport. Mismo efecto que el Hero y el
- * VideoCallout, ahora reutilizable en cualquier sección.
+ * a medida que entra y sale del viewport.
+ *
+ * En mobile / dispositivos low-end / con `prefers-reduced-motion`, NO usa
+ * useScroll (que es caro en cada scroll event) y simplemente renderiza un
+ * div estático. Esto evita el lag típico en celulares con muchos useScroll
+ * activos simultáneamente.
  */
 export default function ParallaxBlock({
+  children,
+  className,
+  range = 60,
+}: Props) {
+  const { shouldReduceMotion } = useDeviceCapabilities();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return <ParallaxBlockActive className={className} range={range}>{children}</ParallaxBlockActive>;
+}
+
+function ParallaxBlockActive({
   children,
   className,
   range = 60,

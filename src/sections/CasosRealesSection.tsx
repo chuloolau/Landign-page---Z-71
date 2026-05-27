@@ -1,5 +1,6 @@
 import FadeIn from '../components/FadeIn';
 import ParallaxBlock from '../components/ParallaxBlock';
+import LazyVideo from '../components/LazyVideo';
 
 const cases = [
   {
@@ -75,18 +76,14 @@ export default function CasosRealesSection() {
                     '0 1px 0 0 rgba(10,10,11,0.03)';
                 }}
               >
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
+                <LazyVideo
+                  src={c.src}
+                  preload="metadata"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
                   style={{
                     transform: 'scale(1.05)',
                     transformOrigin: 'center',
                   }}
-                  src={c.src}
                 />
                 <div
                   className="absolute inset-0 pointer-events-none transition-opacity duration-500 group-hover:opacity-90"

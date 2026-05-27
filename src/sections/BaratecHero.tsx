@@ -1,20 +1,27 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import FadeIn from '../components/FadeIn';
+import useDeviceCapabilities from '../hooks/useDeviceCapabilities';
 
 export default function BaratecHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const { shouldReduceMotion } = useDeviceCapabilities();
 
   // Parallax: imagen baja con las letras estilo FOX. La imagen se desplaza
   // bastante hacia abajo creando profundidad. El contenido baja un poco y
   // mantiene opacidad full (no se desvanece).
+  // En mobile / reduced-motion se desactiva (es el efecto más caro de la página).
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '70%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.14]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const imageYActive = useTransform(scrollYProgress, [0, 1], ['0%', '70%']);
+  const imageScaleActive = useTransform(scrollYProgress, [0, 1], [1, 1.14]);
+  const contentYActive = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
+  const imageY = shouldReduceMotion ? undefined : imageYActive;
+  const imageScale = shouldReduceMotion ? undefined : imageScaleActive;
+  const contentY = shouldReduceMotion ? undefined : contentYActive;
 
   return (
     <section

@@ -17,6 +17,7 @@ import {
   Wand2,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import LazyVideo from '../components/LazyVideo';
 
 const RAISED_VIDEO = '/hero-rotaviva.mp4';
 
@@ -270,12 +271,9 @@ export default function FeaturesGrid() {
 
           {/* 10M+ */}
           <article className="relative rounded-2xl overflow-hidden bg-black min-h-[300px] flex flex-col">
-            <video
+            <LazyVideo
               src={RAISED_VIDEO}
-              autoPlay
-              loop
-              muted
-              playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover opacity-75"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 pointer-events-none" />

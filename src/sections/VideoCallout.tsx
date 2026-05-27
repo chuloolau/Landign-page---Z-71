@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
+import LazyVideo from '../components/LazyVideo';
+import useDeviceCapabilities from '../hooks/useDeviceCapabilities';
 
 const WHATSAPP_HREF =
   'https://wa.me/5493571623675?text=' +
@@ -11,13 +13,16 @@ const WHATSAPP_HREF =
 
 export default function VideoCallout() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const { shouldReduceMotion } = useDeviceCapabilities();
 
-  // Parallax: el texto baja con el scroll (mismo efecto que el Hero)
+  // Parallax: el texto baja con el scroll (mismo efecto que el Hero).
+  // Desactivado en mobile / reduced-motion.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
   });
-  const contentY = useTransform(scrollYProgress, [0, 1], ['-15%', '30%']);
+  const contentYActive = useTransform(scrollYProgress, [0, 1], ['-15%', '30%']);
+  const contentY = shouldReduceMotion ? undefined : contentYActive;
 
   return (
     <section
@@ -83,13 +88,9 @@ export default function VideoCallout() {
 
         {/* Columna derecha — video institucional, más chico y con bordes redondeados */}
         <div className="relative w-full h-[55vh] lg:h-auto flex items-center justify-center bg-white">
-          <video
+          <LazyVideo
             src="/nuevo-video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
+            preload="metadata"
             className="max-h-[70%] max-w-[70%] object-contain rounded-2xl"
             style={{
               boxShadow: '0 30px 80px -20px rgba(10,10,11,0.25)',
