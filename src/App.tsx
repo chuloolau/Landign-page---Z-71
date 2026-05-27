@@ -1,4 +1,5 @@
 import StickyNav from './components/StickyNav';
+import MobileMenu from './components/MobileMenu';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import BaratecHero from './sections/BaratecHero';
 import ApplicationsSection from './sections/ApplicationsSection';
@@ -18,6 +19,7 @@ export default function App() {
       }}
     >
       <StickyNav />
+      <MobileMenu />
       <BaratecHero />
       <ApplicationsSection />
       <ProductCarousel />
