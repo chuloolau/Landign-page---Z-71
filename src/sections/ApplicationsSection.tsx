@@ -11,7 +11,7 @@ type Application = {
 
 const applications: Application[] = [
   {
-    title: 'Pick-up',
+    title: 'Off road',
     image: '/silverado-zr2-azul.webp',
     // Desplazado a la izquierda para sacar el logo Chevy del frame visible
     objectPosition: '15% 50%',
@@ -21,7 +21,7 @@ const applications: Application[] = [
     image: '/2026-slld-ext-gal-05.avif',
   },
   {
-    title: 'Off road',
+    title: 'Pick-up',
     image: '/2026-slld-tow-03-v2.avif',
   },
 ];
