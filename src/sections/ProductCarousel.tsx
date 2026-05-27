@@ -9,17 +9,17 @@ type Product = {
 
 const PRODUCTS: Product[] = [
   {
-    image: '/kit-completo.jpg',
+    image: '/kit-completo.webp',
     title: 'Baratec High Performance',
     subtitle: 'Kit completo',
   },
   {
-    image: '/delanteros.jpg',
+    image: '/delanteros.webp',
     title: 'Delantero',
     subtitle: 'Regulable en altura',
   },
   {
-    image: '/traseros.jpg',
+    image: '/traseros.webp',
     title: 'Trasero',
     subtitle: 'Sin regulación',
   },

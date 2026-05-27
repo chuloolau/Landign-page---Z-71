@@ -38,7 +38,7 @@ const pillars: Pillar[] = [
     title: 'Almafuerte, Córdoba',
     description:
       'Diseñamos y producimos en Argentina hace más de una década. Industria local con tecnología, ingeniería y control de calidad propio.',
-    image: '/kit-completo.jpg',
+    image: '/kit-completo.webp',
     href: '#contacto',
   },
 ];

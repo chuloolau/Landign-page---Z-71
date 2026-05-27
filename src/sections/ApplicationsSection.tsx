@@ -12,7 +12,7 @@ type Application = {
 const applications: Application[] = [
   {
     title: 'Pick-up',
-    image: '/silverado-zr2-azul.jpg',
+    image: '/silverado-zr2-azul.webp',
     // Desplazado a la izquierda para sacar el logo Chevy del frame visible
     objectPosition: '15% 50%',
   },
@@ -36,7 +36,7 @@ export default function ApplicationsSection() {
           (efecto FOX "DEFINE YOUR STYLE" adaptado a fondo blanco) */}
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src="/amortiguadores-bg.jpg"
+          src="/amortiguadores-bg.webp"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"

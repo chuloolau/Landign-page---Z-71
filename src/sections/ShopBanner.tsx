@@ -3,7 +3,7 @@ import FadeIn from '../components/FadeIn';
 import ParallaxBlock from '../components/ParallaxBlock';
 
 const SHOP_URL = 'https://amortiguadores.baratec.com/';
-const TABLET_IMAGE = '/tablet-tienda.jpg';
+const TABLET_IMAGE = '/tablet-tienda.webp';
 
 export default function ShopBanner() {
   return (

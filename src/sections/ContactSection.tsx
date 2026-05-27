@@ -71,7 +71,7 @@ export default function ContactSection() {
             >
               <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden flex-shrink-0">
                 <img
-                  src="/tablet-tienda.jpg"
+                  src="/tablet-tienda.webp"
                   alt="Tienda online Baratec en tablet"
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
@@ -186,7 +186,7 @@ export default function ContactSection() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2.5">
               <img
-                src="/logo-b.jpg"
+                src="/logo-b.webp"
                 alt="Baratec"
                 className="h-7 w-auto object-contain pointer-events-none select-none"
                 style={{ mixBlendMode: 'multiply' }}

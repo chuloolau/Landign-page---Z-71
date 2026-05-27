@@ -307,7 +307,7 @@ export default function FeaturesGrid() {
             }}
           >
             <img
-              src="/kit-completo.jpg"
+              src="/kit-completo.webp"
               alt="Kit completo Baratec Z-71 — 2 delanteros + 2 traseros con reservorio externo"
               className="absolute inset-0 w-full h-full object-contain p-6"
               loading="lazy"
