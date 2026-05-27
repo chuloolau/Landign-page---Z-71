@@ -61,7 +61,7 @@ export default function VideoCallout() {
           <FadeIn delay={0.25}>
             <p className="mt-7 text-ink/65 leading-relaxed text-base md:text-lg max-w-xl">
               Amortiguador Monotubo Presurizado con Reservorio Independiente.
-              Cuerpo de acero de 55&nbsp;mm, v&aacute;lvula sinterizada de
+              Cuerpo de acero de 55&nbsp;mm, v&aacute;lvula sintetizada de
               50&nbsp;mm y piezas de aluminio anodizado. Ofrece regulaci&oacute;n
               de altura de porta espiral.
             </p>
