@@ -89,9 +89,9 @@ export default function CasosRealesSection() {
                 className="font-display font-bold leading-[0.95] tracking-[-0.03em] text-ink"
                 style={{ fontSize: 'clamp(1.875rem, 6vw, 4.5rem)' }}
               >
-                Instalaci&oacute;n
+                Relevamiento
                 <br />
-                <span className="accent-gradient">Oficial</span>
+                <span className="accent-gradient">a Medida</span>
               </h2>
             </FadeIn>
           </div>
